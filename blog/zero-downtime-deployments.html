@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero-Downtime Deployments on AWS | Aakash</title>
+    <meta name="description"
+        content="Strategies for blue-green deployments, canary releases, and rolling updates in production environments.">
+    <link rel="stylesheet" href="blog-post.css">
+</head>
+
+<body>
+    <div class="blog-post-container">
+        <a href="../index.html#blog" class="blog-back">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Back to Portfolio
+        </a>
+
+        <header class="blog-post-header">
+            <span class="blog-post-tag">Cloud</span>
+            <h1 class="blog-post-title">Zero-Downtime Deployments on AWS</h1>
+            <div class="blog-post-meta">
+                <span>📅 Jan 2026</span>
+                <span>⏱ 8 min read</span>
+            </div>
+        </header>
+
+        <div class="blog-hero-image"
+            style="background: linear-gradient(135deg, #9333ea 0%, #c084fc 100%); border-radius: 16px;"></div>
+
+        <article class="blog-post-body">
+            <p>Deploying code shouldn't mean crossing your fingers and hoping nothing breaks. In any serious production
+                environment, deployments need to be <strong>invisible to users</strong>. No 503 errors, no "maintenance
+                mode" pages, no dropped connections.</p>
+
+            <p>This post explores three deployment strategies I've used on AWS — their tradeoffs, when to use each, and
+                the infrastructure pieces that make them work.</p>
+
+            <h2>Why Zero-Downtime Matters</h2>
+
+            <p>Downtime during deployments isn't just a technical inconvenience — it has real business impact. Every
+                second of unavailability erodes user trust, affects SEO rankings, and can trigger SLA violations. The
+                goal is to make deployments a <strong>non-event</strong>.</p>
+
+            <h2>Strategy 1: Blue-Green Deployments</h2>
+
+            <p>The idea is simple: maintain two identical environments — <strong>Blue</strong> (current production) and
+                <strong>Green</strong> (new version). Deploy the new code to Green, run your smoke tests, and then flip
+                the load balancer to point at Green.</p>
+
+            <h3>How It Works on AWS</h3>
+            <ul>
+                <li><strong>ECS + ALB</strong> — Run two ECS services behind an Application Load Balancer. Each service
+                    points to a different target group.</li>
+                <li><strong>Route 53 weighted routing</strong> — Shift DNS traffic from one target group to another.
+                </li>
+                <li><strong>Elastic Beanstalk</strong> — Has built-in blue-green support via the "Swap environment URLs"
+                    feature.</li>
+            </ul>
+
+            <h3>Tradeoffs</h3>
+            <p>Blue-green gives you <strong>instant rollback</strong> — if Green has issues, flip back to Blue. The
+                downside is cost: you pay for two full environments during the transition window. For most teams, this
+                window is short (minutes), so the cost is manageable.</p>
+
+            <h2>Strategy 2: Canary Releases</h2>
+
+            <p>Instead of switching all traffic at once, canary releases send a <strong>small percentage</strong> (e.g.,
+                5%) of traffic to the new version. You monitor error rates, latency, and business metrics. If everything
+                looks healthy, you gradually increase traffic until the new version handles 100%.</p>
+
+            <pre><code># AWS CodeDeploy canary config
+deployment_config:
+  type: Canary
+  canary_percentage: 10
+  canary_interval: 5   # minutes
+  
+# Traffic shifts:
+# 0min  → 10% new, 90% old
+# 5min  → 100% new (if healthy)</code></pre>
+
+            <h3>When to Use Canary</h3>
+            <p>Canary is ideal when you need <strong>confidence before full rollout</strong>. It's especially valuable
+                for:</p>
+            <ul>
+                <li>Changes to payment or checkout flows</li>
+                <li>Database schema migrations that affect queries</li>
+                <li>Third-party API integration updates</li>
+            </ul>
+
+            <h2>Strategy 3: Rolling Updates</h2>
+
+            <p>Rolling updates replace instances <strong>one at a time</strong> (or in batches). While one batch is
+                being updated, the remaining instances continue serving traffic. This is the default strategy for most
+                ECS and Kubernetes deployments.</p>
+
+            <h3>Configuration</h3>
+            <pre><code># ECS service rolling update settings
+deployment_configuration:
+  minimum_healthy_percent: 50
+  maximum_percent: 200
+
+# This means:
+# - At least 50% of tasks stay running during deploy
+# - Up to 200% of tasks can run temporarily (old + new)</code></pre>
+
+            <h3>Tradeoffs</h3>
+            <p>Rolling updates are <strong>cost-efficient</strong> — you don't need a fully duplicate environment. But
+                rollbacks are slower: you have to re-deploy the previous version through the same rolling process.</p>
+
+            <h2>Choosing the Right Strategy</h2>
+
+            <p>There's no universal answer. Here's how I think about it:</p>
+
+            <ul>
+                <li><strong>Blue-green</strong> → When you need instant rollback and can afford temporary
+                    double-capacity</li>
+                <li><strong>Canary</strong> → When the change is risky and you want gradual validation</li>
+                <li><strong>Rolling</strong> → For routine, lower-risk deployments where cost matters</li>
+            </ul>
+
+            <blockquote>
+                <p>"The best deployment is the one nobody notices."</p>
+            </blockquote>
+
+            <h2>Infrastructure Essentials</h2>
+
+            <p>Regardless of which strategy you choose, these AWS components are critical:</p>
+
+            <ul>
+                <li><strong>Health checks</strong> — ALB health checks ensure only healthy instances receive traffic.
+                    Configure both path-based and grace period settings.</li>
+                <li><strong>Connection draining</strong> — When deregistering old instances, give in-flight requests
+                    time to complete before terminating.</li>
+                <li><strong>CloudWatch alarms</strong> — Automatic rollback triggers based on error rate spikes or
+                    latency thresholds.</li>
+            </ul>
+
+            <h2>Final Thoughts</h2>
+
+            <p>Zero-downtime deployments aren't just for large-scale operations. Even small projects benefit from the
+                <strong>discipline of automating safe deployments</strong> early. Once you've set up the pipeline, every
+                future deployment becomes a non-event — and that's exactly the point.</p>
+        </article>
+
+        <footer class="blog-post-footer">
+            <p>Want to discuss deployment strategies or cloud architecture?</p>
+            <a href="../index.html#contact">Get in Touch →</a>
+        </footer>
+    </div>
+</body>
+
+</html>

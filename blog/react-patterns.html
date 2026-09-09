@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern React Patterns for Enterprise Apps | Aakash</title>
+    <meta name="description"
+        content="Compound components, render props, and custom hooks that make large-scale React codebases maintainable.">
+    <link rel="stylesheet" href="blog-post.css">
+</head>
+
+<body>
+    <div class="blog-post-container">
+        <a href="../index.html#blog" class="blog-back">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Back to Portfolio
+        </a>
+
+        <header class="blog-post-header">
+            <span class="blog-post-tag">Full Stack</span>
+            <h1 class="blog-post-title">Modern React Patterns for Enterprise Apps</h1>
+            <div class="blog-post-meta">
+                <span>📅 Dec 2025</span>
+                <span>⏱ 6 min read</span>
+            </div>
+        </header>
+
+        <div class="blog-hero-image"
+            style="background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%); border-radius: 16px;"></div>
+
+        <article class="blog-post-body">
+            <p>React gives you freedom — almost too much freedom. A small project can get away with prop drilling and
+                local state, but enterprise-scale codebases need <strong>patterns that enforce consistency</strong> and
+                reduce cognitive load for every developer on the team.</p>
+
+            <p>This post covers three patterns I reach for repeatedly when building large React applications:
+                <strong>compound components, render props, and custom hooks</strong>.</p>
+
+            <h2>Pattern 1: Compound Components</h2>
+
+            <p>Compound components are a way to express <strong>relationships between components</strong> through a
+                shared parent context. Think of how <code>&lt;select&gt;</code> and <code>&lt;option&gt;</code> work in
+                HTML — neither makes sense alone, but together they form a cohesive API.</p>
+
+            <pre><code>// Usage — clean, declarative API
+&lt;Accordion&gt;
+  &lt;Accordion.Item&gt;
+    &lt;Accordion.Trigger&gt;What is your refund policy?&lt;/Accordion.Trigger&gt;
+    &lt;Accordion.Content&gt;Full refund within 30 days.&lt;/Accordion.Content&gt;
+  &lt;/Accordion.Item&gt;
+  &lt;Accordion.Item&gt;
+    &lt;Accordion.Trigger&gt;Do you offer support?&lt;/Accordion.Trigger&gt;
+    &lt;Accordion.Content&gt;24/7 email and chat support.&lt;/Accordion.Content&gt;
+  &lt;/Accordion.Item&gt;
+&lt;/Accordion&gt;</code></pre>
+
+            <h3>Why It Works</h3>
+            <p>The parent (<code>Accordion</code>) manages state internally. Children access it via Context. The API is
+                <strong>self-documenting</strong> — you can see exactly what the component does by reading the JSX.</p>
+
+            <h3>When to Use</h3>
+            <ul>
+                <li>Tabs, accordions, dropdowns, modals — any multi-part UI component</li>
+                <li>When you want to give consumers <strong>composition control</strong> over layout while managing the
+                    logic internally</li>
+            </ul>
+
+            <h2>Pattern 2: Render Props</h2>
+
+            <p>Render props let you share <strong>behavior</strong> between components by passing a function as a child
+                (or prop). The function receives state/data as arguments and returns JSX.</p>
+
+            <pre><code>// A reusable mouse tracker
+function MouseTracker({ render }) {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() =&gt; {
+    const handleMove = (e) =&gt; setPosition({ x: e.clientX, y: e.clientY });
+    window.addEventListener('mousemove', handleMove);
+    return () =&gt; window.removeEventListener('mousemove', handleMove);
+  }, []);
+
+  return render(position);
+}
+
+// Usage
+&lt;MouseTracker render={({ x, y }) =&gt; (
+  &lt;div&gt;Cursor: {x}, {y}&lt;/div&gt;
+)} /&gt;</code></pre>
+
+            <h3>When to Use</h3>
+            <ul>
+                <li>When you need to <strong>share stateful logic without opinionated UI</strong></li>
+                <li>When custom hooks aren't appropriate (e.g., you need lifecycle-aware rendering)</li>
+            </ul>
+
+            <blockquote>
+                <p>Render props are less common now that hooks exist, but they're still valuable for components that
+                    need to control their own rendering lifecycle.</p>
+            </blockquote>
+
+            <h2>Pattern 3: Custom Hooks</h2>
+
+            <p>Custom hooks are the most powerful abstraction in modern React. They let you extract <strong>reusable
+                    stateful logic</strong> into standalone functions that can be composed across components.</p>
+
+            <pre><code>// A hook for debounced search
+function useDebouncedSearch(query, delay = 300) {
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() =&gt; {
+    if (!query) { setResults([]); return; }
+
+    setLoading(true);
+    const timer = setTimeout(async () =&gt; {
+      const data = await searchAPI(query);
+      setResults(data);
+      setLoading(false);
+    }, delay);
+
+    return () =&gt; clearTimeout(timer);
+  }, [query, delay]);
+
+  return { results, loading };
+}
+
+// Usage in any component
+function SearchBar() {
+  const [query, setQuery] = useState('');
+  const { results, loading } = useDebouncedSearch(query);
+
+  return (
+    &lt;div&gt;
+      &lt;input value={query} onChange={(e) =&gt; setQuery(e.target.value)} /&gt;
+      {loading ? &lt;Spinner /&gt; : &lt;ResultsList items={results} /&gt;}
+    &lt;/div&gt;
+  );
+}</code></pre>
+
+            <h3>Best Practices for Custom Hooks</h3>
+            <ul>
+                <li><strong>Single responsibility</strong> — Each hook does one thing well</li>
+                <li><strong>Return objects, not arrays</strong> — When returning more than 2 values, objects are easier
+                    to destructure selectively</li>
+                <li><strong>Handle cleanup</strong> — Always return cleanup functions from effects to prevent memory
+                    leaks</li>
+                <li><strong>Test independently</strong> — Hooks can be tested with
+                    <code>@testing-library/react-hooks</code> without rendering full components</li>
+            </ul>
+
+            <h2>Putting It All Together</h2>
+
+            <p>These patterns aren't mutually exclusive. In a real enterprise app, you might have:</p>
+
+            <ul>
+                <li>A <strong>compound component</strong> for your design system's <code>DataTable</code></li>
+                <li>A <strong>render prop</strong> for a chart component that lets consumers customize tooltips</li>
+                <li><strong>Custom hooks</strong> for data fetching, form validation, and authentication state</li>
+            </ul>
+
+            <p>The key insight is that patterns exist to <strong>reduce complexity, not add it</strong>. Use them when
+                they genuinely simplify your codebase, and skip them when a simple component with props does the job.
+            </p>
+
+            <h2>Final Thoughts</h2>
+
+            <p>Enterprise React is all about <strong>managing complexity at scale</strong>. These three patterns —
+                compound components, render props, and custom hooks — give you a toolkit for building UIs that are
+                composable, testable, and maintainable. Start with the simplest abstraction that works, and evolve as
+                your needs grow.</p>
+        </article>
+
+        <footer class="blog-post-footer">
+            <p>Want to discuss React architecture or frontend engineering?</p>
+            <a href="../index.html#contact">Get in Touch →</a>
+        </footer>
+    </div>
+</body>
+
+</html>

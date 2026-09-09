@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Scalable ML Pipelines with Python | Aakash</title>
+    <meta name="description"
+        content="A deep dive into designing production-ready machine learning systems — from data ingestion to model serving.">
+    <link rel="stylesheet" href="blog-post.css">
+</head>
+
+<body>
+    <div class="blog-post-container">
+        <a href="../index.html#blog" class="blog-back">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Back to Portfolio
+        </a>
+
+        <header class="blog-post-header">
+            <span class="blog-post-tag">Machine Learning</span>
+            <h1 class="blog-post-title">Building Scalable ML Pipelines with Python</h1>
+            <div class="blog-post-meta">
+                <span>📅 Feb 2026</span>
+                <span>⏱ 5 min read</span>
+            </div>
+        </header>
+
+        <div class="blog-hero-image"
+            style="background: linear-gradient(135deg, #00D1FF 0%, #0077B6 100%); border-radius: 16px;"></div>
+
+        <article class="blog-post-body">
+            <p>Machine learning in production is fundamentally different from ML in a Jupyter notebook. The moment you
+                need to serve predictions at scale, retrain models on fresh data, and monitor for drift — you realize
+                that the model itself is only a small piece of a much larger system.</p>
+
+            <p>This article walks through how I think about building ML pipelines that are <strong>modular, testable,
+                    and production-ready</strong> — using Python as the backbone.</p>
+
+            <h2>The Problem with Notebook-First ML</h2>
+
+            <p>Most ML projects start in notebooks, and that's fine for experimentation. But notebooks create invisible
+                dependencies: global state, unnamed intermediate variables, cells that must run in a specific order. The
+                result is code that works on your machine but breaks everywhere else.</p>
+
+            <blockquote>
+                <p>"The real challenge in ML isn't building the model — it's building the system around the model."</p>
+            </blockquote>
+
+            <h2>Pipeline Architecture</h2>
+
+            <p>A well-designed ML pipeline separates concerns into distinct stages, each with a clear input and output
+                contract:</p>
+
+            <ol>
+                <li><strong>Data Ingestion</strong> — Pull raw data from sources (databases, APIs, file stores) into a
+                    consistent format</li>
+                <li><strong>Preprocessing</strong> — Clean, transform, and validate data. This includes handling missing
+                    values, encoding categoricals, and normalizing numerical features</li>
+                <li><strong>Feature Engineering</strong> — Create meaningful representations from raw features. This is
+                    where domain knowledge shines</li>
+                <li><strong>Model Training</strong> — Train, tune hyperparameters, and evaluate against holdout sets
+                </li>
+                <li><strong>Model Serving</strong> — Deploy the model behind an API for real-time or batch inference
+                </li>
+            </ol>
+
+            <h2>Implementation in Python</h2>
+
+            <p>Here's a simplified structure I follow for most projects:</p>
+
+            <pre><code>project/
+├── data/
+│   ├── raw/
+│   └── processed/
+├── src/
+│   ├── ingest.py
+│   ├── preprocess.py
+│   ├── features.py
+│   ├── train.py
+│   └── serve.py
+├── tests/
+├── configs/
+│   └── model_config.yaml
+└── pipeline.py          # Orchestrates the stages</code></pre>
+
+            <p>Each module exposes a single entry function. The orchestrator (<code>pipeline.py</code>) chains them
+                together, passing data through each stage. This makes it trivial to swap out a preprocessing step or add
+                a new feature without touching the rest of the pipeline.</p>
+
+            <h2>Key Design Decisions</h2>
+
+            <h3>1. Schema Validation at Every Boundary</h3>
+            <p>Use tools like <code>pydantic</code> or <code>pandera</code> to validate your data at each pipeline
+                stage. This catches issues early — before they cascade into mysterious training failures.</p>
+
+            <h3>2. Idempotent Stages</h3>
+            <p>Every stage should be re-runnable without side effects. If preprocessing fails halfway, you should be
+                able to restart it cleanly. This means avoiding in-place mutations and writing outputs to versioned
+                directories.</p>
+
+            <h3>3. Configuration Over Code</h3>
+            <p>Hyperparameters, feature lists, and model choices should live in YAML/JSON configs, not hardcoded in
+                Python files. This enables experiment tracking and reproducibility.</p>
+
+            <h2>Evaluation and Monitoring</h2>
+
+            <p>Once deployed, the pipeline isn't "done." Models degrade as data distributions shift. Build in automated
+                monitoring for:</p>
+
+            <ul>
+                <li><strong>Prediction drift</strong> — Are output distributions shifting over time?</li>
+                <li><strong>Feature drift</strong> — Are input feature distributions changing?</li>
+                <li><strong>Latency budgets</strong> — Is the serving layer meeting SLA targets?</li>
+            </ul>
+
+            <h2>Final Thoughts</h2>
+
+            <p>Building ML pipelines is an exercise in <strong>systems thinking</strong>. The model is one component in
+                a larger architecture that includes data plumbing, observability, and deployment automation. Getting
+                this foundation right early saves enormous pain later.</p>
+
+            <p>The goal isn't perfection on day one — it's building a structure that's easy to iterate on. Start with
+                the pipeline skeleton, validate your data contracts, and grow from there.</p>
+        </article>
+
+        <footer class="blog-post-footer">
+            <p>Thanks for reading. Want to discuss ML systems architecture?</p>
+            <a href="../index.html#contact">Get in Touch →</a>
+        </footer>
+    </div>
+</body>
+
+</html>

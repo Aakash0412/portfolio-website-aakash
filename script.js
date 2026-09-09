@@ -65,17 +65,43 @@
     });
 })();
 
-/* ---------- SMOOTH NAV LINKS ---------- */
+/* ---------- SMOOTH SCROLLING (LENIS) ---------- */
 (function () {
+    if (typeof Lenis === 'undefined') return;
+    
+    // Initialize Lenis with refined momentum settings
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Update anchor links to use lenis for smooth momentum scrolling
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             const id = a.getAttribute('href').slice(1);
+            if (!id) return;
             const target = document.getElementById(id);
             if (!target) return;
             e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth' });
+            lenis.scrollTo(target, { offset: -60 }); // offset for header
         });
     });
+
+    // Also update Command Palette scrolling
+    window.__lenis = lenis; // Expose globally for palette if needed
 })();
 
 /* ---------- ACTIVE NAV HIGHLIGHT ---------- */
@@ -172,7 +198,13 @@
         close();
         if (action === 'scroll') {
             const el = document.getElementById(target);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            if (el) {
+                if (window.__lenis) {
+                    window.__lenis.scrollTo(el, { offset: -60 });
+                } else {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
         } else if (action === 'copy') {
             navigator.clipboard.writeText(target).catch(() => {});
         } else if (action === 'open') {
