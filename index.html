@@ -22,6 +22,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {}
+        })();
+    </script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Aakash A.","url":"https://aakashayyappan.com","jobTitle":"Computer Science & Business Systems Student","description":"B.Tech CSBS student at SASTRA building AI systems, backend APIs, ML pipelines and full-stack apps.","alumniOf":{"@type":"CollegeOrUniversity","name":"SASTRA Deemed University"},"knowsAbout":["Python","AI Agents","LLMs","FastAPI","React","Next.js","PostgreSQL"],"sameAs":["https://github.com/Aakash0412","https://www.linkedin.com/in/aakash-a-4bb3a32b3/"]}</script>
 </head>
 
@@ -47,7 +55,7 @@
                 <button class="palette-item" data-action="scroll" data-target="education">Go to Education</button>
                 <button class="palette-item" data-action="scroll" data-target="contact">Go to Contact</button>
                 <p class="palette-group">Actions</p>
-                <button class="palette-item" data-action="copy" data-target="aakashayy04@gmail.com">Copy email address</button>
+                <button class="palette-item" data-action="copy" data-target="email">Copy email address</button>
                 <button class="palette-item" data-action="open" data-target="aakash-resume.pdf">Download resume</button>
                 <button class="palette-item" data-action="open" data-target="https://github.com/Aakash0412">Open GitHub</button>
                 <button class="palette-item" data-action="open" data-target="https://www.linkedin.com/in/aakash-a-4bb3a32b3/">Open LinkedIn</button>
@@ -104,6 +112,11 @@
                 <a href="#projects" class="btn btn-primary">View Projects</a>
                 <a href="aakash-resume.pdf" class="btn btn-ghost" download>Resume &#8595;</a>
                 <a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &#8599;</a>
+            </div>
+            
+            <!-- Hero Decoration element for the right side -->
+            <div class="hero-decor reveal-fade" style="--delay:300ms" aria-hidden="true">
+                <div class="decor-grid"></div>
             </div>
         </div>
         <span class="hero-scroll-hint" aria-hidden="true">Scroll &#8595;</span>
@@ -277,7 +290,7 @@
                     <div class="contact-details">
                         <div class="contact-detail-item">
                             <span class="contact-detail-label">Email</span>
-                            <span class="contact-detail-value">aakashayy04@gmail.com <button class="copy-email-btn" id="copyEmailBtn" onclick="navigator.clipboard.writeText('aakashayy04@gmail.com').then(()=>{this.textContent='Copied';setTimeout(()=>this.textContent='Copy',2000)})">Copy</button></span>
+                            <span class="contact-detail-value"><span id="contactEmailDisplay">Click copy to reveal</span> <button class="copy-email-btn" id="copyEmailBtn">Copy</button></span>
                         </div>
                         <div class="contact-detail-item">
                             <span class="contact-detail-label">Location</span>
@@ -290,7 +303,7 @@
                         <a href="aakash-resume.pdf" class="social-link" download>Resume &#8595;</a>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm" action="https://formspree.io/f/aakashayy04@gmail.com" method="POST">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
                     <div class="form-group"><label for="contactName" class="form-label">Name</label><input type="text" id="contactName" name="name" class="form-input" placeholder="Your name" required></div>
                     <div class="form-group"><label for="contactEmail" class="form-label">Email</label><input type="email" id="contactEmail" name="email" class="form-input" placeholder="your@email.com" required></div>
                     <div class="form-group"><label for="contactSubject" class="form-label">Subject</label><input type="text" id="contactSubject" name="subject" class="form-input" placeholder="What's this about?"></div>
@@ -312,12 +325,12 @@
         </div>
         <div class="footer-body container">
             <div><p class="footer-name">Aakash A.</p><p class="footer-tagline">AI Systems · Backend Engineering · Data Analytics</p></div>
-            <div class="footer-links"><a href="https://www.linkedin.com/in/aakash-a-4bb3a32b3/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer">GitHub</a><a href="mailto:aakashayy04@gmail.com">Email</a><a href="aakash-resume.pdf" download>Resume</a></div>
+            <div class="footer-links"><a href="https://www.linkedin.com/in/aakash-a-4bb3a32b3/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer">GitHub</a><a href="#" id="footerEmailLink">Email</a><a href="aakash-resume.pdf" download>Resume</a></div>
             <p class="footer-copy">&copy; 2026 Aakash A.</p>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>

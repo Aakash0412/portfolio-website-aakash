@@ -30,9 +30,8 @@
     const root = document.documentElement;
     if (!btn) return;
 
-    const saved = localStorage.getItem('theme') || 'dark';
-    root.setAttribute('data-theme', saved);
-    btn.textContent = saved === 'dark' ? 'Light' : 'Dark';
+    const current = root.getAttribute('data-theme') || 'dark';
+    btn.textContent = current === 'dark' ? 'Light' : 'Dark';
 
     btn.addEventListener('click', () => {
         const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -69,6 +68,9 @@
 (function () {
     if (typeof Lenis === 'undefined') return;
     
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return; // Disable smooth scrolling if user prefers reduced motion
+
     // Initialize Lenis with refined momentum settings
     const lenis = new Lenis({
         duration: 1.2,
@@ -121,6 +123,13 @@
     }, { rootMargin: '-40% 0px -50% 0px' });
 
     sections.forEach(s => observer.observe(s));
+
+    // Clear active states when at the very top (Hero section)
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < window.innerHeight * 0.3) {
+            links.forEach(l => l.classList.remove('is-active'));
+        }
+    }, { passive: true });
 })();
 
 /* ---------- REVEAL ON SCROLL ---------- */
@@ -142,6 +151,10 @@
 (function () {
     const items = document.querySelectorAll('.role-item');
     if (!items.length) return;
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return; // Pause cycler if user prefers reduced motion
+
     let current = 0;
 
     function next() {
@@ -188,10 +201,14 @@
 
     function filterItems(q) {
         const term = q.toLowerCase().trim();
+        let firstVisible = null;
         ALL_ITEMS.forEach(item => {
             const match = !term || item.text.includes(term);
             item.el.style.display = match ? '' : 'none';
+            item.el.classList.remove('is-focused');
+            if (match && !firstVisible) firstVisible = item;
         });
+        if (firstVisible) firstVisible.el.classList.add('is-focused');
     }
 
     function run(action, target) {
@@ -206,7 +223,8 @@
                 }
             }
         } else if (action === 'copy') {
-            navigator.clipboard.writeText(target).catch(() => {});
+            const textToCopy = target === 'email' ? window.__contactEmail : target;
+            navigator.clipboard.writeText(textToCopy).catch(() => {});
         } else if (action === 'open') {
             window.open(target, '_blank', 'noopener');
         }
@@ -219,13 +237,44 @@
 
     input.addEventListener('input', () => filterItems(input.value));
 
-    // ⌘K / Ctrl+K
+    // ⌘K / Ctrl+K and Arrow Keys
     document.addEventListener('keydown', e => {
         if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
             e.preventDefault();
             overlay.classList.contains('is-open') ? close() : open();
+            return;
         }
-        if (e.key === 'Escape') close();
+        
+        if (!overlay.classList.contains('is-open')) return;
+        
+        if (e.key === 'Escape') {
+            close();
+            return;
+        }
+        
+        const visibleItems = ALL_ITEMS.filter(item => item.el.style.display !== 'none');
+        if (!visibleItems.length) return;
+        
+        const currentIndex = visibleItems.findIndex(item => item.el.classList.contains('is-focused'));
+        
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextIndex = currentIndex < visibleItems.length - 1 ? currentIndex + 1 : 0;
+            visibleItems.forEach(item => item.el.classList.remove('is-focused'));
+            visibleItems[nextIndex].el.classList.add('is-focused');
+            visibleItems[nextIndex].el.scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevIndex = currentIndex > 0 ? currentIndex - 1 : visibleItems.length - 1;
+            visibleItems.forEach(item => item.el.classList.remove('is-focused'));
+            visibleItems[prevIndex].el.classList.add('is-focused');
+            visibleItems[prevIndex].el.scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (currentIndex !== -1) {
+                run(visibleItems[currentIndex].action, visibleItems[currentIndex].target);
+            }
+        }
     });
 
     // click outside
@@ -297,5 +346,35 @@
             submit.textContent = 'Send message';
         }
     });
+})();
+
+/* ---------- EMAIL OBFUSCATION ---------- */
+(function() {
+    // Reconstruct email dynamically
+    const p1 = 'aakashayy04';
+    const p2 = 'gmail.com';
+    const email = p1 + '@' + p2;
+    
+    // Update contact display
+    const emailDisplay = document.getElementById('contactEmailDisplay');
+    if (emailDisplay) emailDisplay.textContent = email;
+    
+    // Update footer link
+    const footerLink = document.getElementById('footerEmailLink');
+    if (footerLink) footerLink.href = 'mailto:' + email;
+    
+    // Expose for Command Palette copy action
+    window.__contactEmail = email;
+    
+    // Contact copy button
+    const copyBtn = document.getElementById('copyEmailBtn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(email).then(() => {
+                copyBtn.textContent = 'Copied';
+                setTimeout(() => copyBtn.textContent = 'Copy', 2000);
+            });
+        });
+    }
 })();
 
