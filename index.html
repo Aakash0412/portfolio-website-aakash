@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakash A. | AI Systems &amp; Software Engineer</title>
+    <meta name="description"
+        content="Portfolio of Aakash A., a Computer Science and Business Systems student building AI systems, backend applications, data-driven solutions, and full-stack software.">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Aakash A. | AI Systems &amp; Software Engineer">
+    <meta property="og:description"
+        content="Portfolio of Aakash A., a Computer Science and Business Systems student building AI systems, backend applications, data-driven solutions, and full-stack software.">
+    <meta property="og:url" content="https://aakashayyappan.com">
+    <meta property="og:image" content="og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aakash A. | AI Systems &amp; Software Engineer">
+    <meta name="twitter:description"
+        content="Portfolio of Aakash A., a Computer Science and Business Systems student building AI systems, backend applications, data-driven solutions, and full-stack software.">
+    <meta name="twitter:image" content="og-image.png">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aakashayyappan.com">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Devicons for skill icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+</head>
+
+<body class="is-loading">
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">
+                <span class="pl-letter" style="--d:0">A</span><span class="pl-letter" style="--d:1">a</span><span class="pl-letter" style="--d:2">k</span><span class="pl-letter" style="--d:3">a</span><span class="pl-letter" style="--d:4">s</span><span class="pl-letter" style="--d:5">h</span><span class="pl-dot">.</span>
+            </div>
+            <div class="preloader-bar">
+                <div class="preloader-progress" id="preloaderProgress"></div>
+            </div>
+            <div class="preloader-pct" id="preloaderPct">0%</div>
+        </div>
+    </div>
+
+    <!-- Subtle radial glow -->
+    <div class="aurora-bg" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+    </div>
+
+    <!-- Noise/Grain Texture Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Cursor Glow Follower -->
+    <div id="cursorGlow" aria-hidden="true"></div>
+
+    <!-- Section Progress Dots -->
+    <nav id="sectionDots" aria-label="Section navigation">
+        <div class="sdot" title="Home"></div>
+        <div class="sdot" title="About"></div>
+        <div class="sdot" title="Skills"></div>
+        <div class="sdot" title="What I Build"></div>
+        <div class="sdot" title="Projects"></div>
+        <div class="sdot" title="Experience"></div>
+        <div class="sdot" title="Education"></div>
+        <div class="sdot" title="Contact"></div>
+    </nav>
+
+    <!-- Cmd+K Command Palette -->
+    <div class="cmd-palette-overlay" id="cmdPaletteOverlay">
+        <div class="cmd-palette" id="cmdPalette">
+            <div class="cmd-palette-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="text" class="cmd-palette-input" id="cmdInput" placeholder="Type a command..."
+                    autocomplete="off">
+                <kbd class="cmd-kbd">ESC</kbd>
+            </div>
+            <div class="cmd-palette-body" id="cmdBody">
+                <div class="cmd-group-label">Navigation</div>
+                <button class="cmd-item" data-action="navigate" data-target="#home">
+                    <span class="cmd-item-icon">🏠</span>
+                    <span>Go to Home</span>
+                </button>
+                <button class="cmd-item" data-action="navigate" data-target="#about">
+                    <span class="cmd-item-icon">👤</span>
+                    <span>Go to About</span>
+                </button>
+                <button class="cmd-item" data-action="navigate" data-target="#skills">
+                    <span class="cmd-item-icon">⚡</span>
+                    <span>Go to Skills</span>
+                </button>
+                <button class="cmd-item" data-action="navigate" data-target="#projects">
+                    <span class="cmd-item-icon">📂</span>
+                    <span>Go to Projects</span>
+                </button>
+                <button class="cmd-item" data-action="navigate" data-target="#experience">
+                    <span class="cmd-item-icon">🏆</span>
+                    <span>Go to Experience</span>
+                </button>
+                <button class="cmd-item" data-action="navigate" data-target="#education">
+                    <span class="cmd-item-icon">🎓</span>
+                    <span>Go to Education</span>
+                </button>
+                <button class="cmd-item" data-action="navigate" data-target="#contact">
+                    <span class="cmd-item-icon">✉️</span>
+                    <span>Go to Contact</span>
+                </button>
+                <div class="cmd-group-label">Actions</div>
+                <button class="cmd-item" data-action="theme">
+                    <span class="cmd-item-icon">🌓</span>
+                    <span>Toggle Dark/Light Mode</span>
+                </button>
+                <button class="cmd-item" data-action="copy-email">
+                    <span class="cmd-item-icon">📋</span>
+                    <span>Copy Email Address</span>
+                </button>
+                <button class="cmd-item" data-action="resume">
+                    <span class="cmd-item-icon">📄</span>
+                    <span>Download Resume</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Floating Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <div class="navbar-brand">
+                Aakash.
+                <span class="availability-badge">
+                    <span class="avail-dot"></span>
+                    Available
+                </span>
+            </div>
+            <div class="navbar-links" id="navLinks">
+                <a href="#home" class="nav-link nav-roll" data-section="home" data-text="Home">Home</a>
+                <a href="#about" class="nav-link nav-roll" data-section="about" data-text="About">About</a>
+                <a href="#skills" class="nav-link nav-roll" data-section="skills" data-text="Skills">Skills</a>
+                <a href="#projects" class="nav-link nav-roll" data-section="projects" data-text="Projects">Projects</a>
+                <a href="#experience" class="nav-link nav-roll" data-section="experience"
+                    data-text="Experience">Experience</a>
+                <a href="#contact" class="nav-link nav-roll" data-section="contact" data-text="Contact">Contact</a>
+            </div>
+            <div class="navbar-actions">
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <svg class="theme-icon sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="theme-icon moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+                <a href="aakash-resume.pdf" class="nav-cta" download>Resume</a>
+                <!-- Hamburger Menu -->
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section id="home" class="hero">
+        <canvas id="hero-particles-canvas" class="hero-particles-canvas"></canvas>
+
+        <div class="container hero-content">
+            <!-- Open to Internships Badge -->
+            <div class="open-badge reveal-up" style="--reveal-delay: 0s">
+                <span class="open-badge-dot"></span>
+                Open to Internships &amp; Collaborations
+            </div>
+
+            <!-- Split-letter hero title -->
+            <h1 class="hero-title" id="heroTitle" aria-label="Aakash A.">
+                <span class="hero-title-word">
+                    <span class="htc" style="--i:0">A</span><span class="htc" style="--i:1">a</span><span class="htc" style="--i:2">k</span><span class="htc" style="--i:3">a</span><span class="htc" style="--i:4">s</span><span class="htc" style="--i:5">h</span>
+                </span>
+                <span class="hero-title-word hero-title-accent">
+                    <span class="htc" style="--i:7">A</span><span class="htc htc-dot" style="--i:8">.</span>
+                </span>
+            </h1>
+
+            <!-- Role Cycler -->
+            <div class="role-cycler reveal-up" style="--reveal-delay: 0.5s" aria-live="polite">
+                <span class="role-prefix">I build&nbsp;</span>
+                <span class="role-track" id="roleCycler">
+                    <span class="role-item active">AI Systems</span>
+                    <span class="role-item">Backend APIs</span>
+                    <span class="role-item">ML Pipelines</span>
+                    <span class="role-item">Full-Stack Apps</span>
+                </span>
+            </div>
+
+            <p class="hero-subtitle reveal-up" style="--reveal-delay: 0.7s">Computer Science &amp; Business Systems student building AI systems, backend
+                infrastructure, data-driven applications, and full-stack software.</p>
+
+            <div class="hero-cta reveal-up" style="--reveal-delay: 0.9s">
+                <a href="#projects" class="btn btn-primary btn-magnetic btn-shine" data-split-btn>View Projects</a>
+                <a href="aakash-resume.pdf" class="btn btn-resume btn-magnetic btn-shine" download>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    Download Resume
+                </a>
+                <a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-secondary btn-magnetic btn-shine">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+
+
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})" aria-label="Scroll to About">
+            <div class="scroll-mouse"><div class="scroll-mouse-wheel"></div></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ===================== ABOUT SECTION ===================== -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <!-- Left: Bio -->
+                <div class="about-left">
+                    <h2 class="section-title-left reveal-up">Building complete systems,<br><span class="gradient-text">from model to deployment.</span></h2>
+                    <p class="about-body reveal-up" style="--reveal-delay: 0.2s">I'm a B.Tech student in Computer Science and Business Systems (CSBS) at
+                        SASTRA Deemed University. I focus on building systems end-to-end — AI pipelines, backend
+                        services, data-driven applications, and full-stack interfaces. I'm interested in how data,
+                        models, and infrastructure connect to produce working, deployable software.</p>
+
+                    <!-- Terminal Card -->
+                    <div class="terminal-card reveal-up" style="--reveal-delay: 0.3s">
+                        <div class="terminal-header">
+                            <span class="t-dot t-red"></span>
+                            <span class="t-dot t-yellow"></span>
+                            <span class="t-dot t-green"></span>
+                            <span class="t-title">whoami.sh</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
+                            <div class="t-line t-output">aakash — cs + business systems @ sastra</div>
+                            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat focus.txt</span></div>
+                            <div class="t-line t-output">AI &amp; LLMs · Backend Engineering · Data Analytics</div>
+                            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">echo $STATUS</span></div>
+                            <div class="t-line t-output t-green-text">open to internships &amp; collaborations ✓</div>
+                            <div class="t-line"><span class="t-prompt t-blink">▊</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Animated Stats -->
+                <div class="about-right">
+                    <div class="about-stats-grid">
+                        <div class="about-stat-card glass-card reveal-up" style="--reveal-delay: 0.15s">
+                            <span class="about-stat-icon">🎓</span>
+                            <span class="about-stat-value">B.Tech CSBS</span>
+                            <span class="about-stat-label">SASTRA Deemed University · Expected 2027</span>
+                        </div>
+                        <div class="about-stat-card glass-card reveal-up" style="--reveal-delay: 0.25s">
+                            <span class="about-stat-icon">🤖</span>
+                            <span class="about-stat-value">AI + Backend</span>
+                            <span class="about-stat-label">Primary technical focus</span>
+                        </div>
+                        <div class="about-stat-card glass-card reveal-up" style="--reveal-delay: 0.35s">
+                            <span class="about-stat-icon">📌</span>
+                            <span class="about-stat-value">E-Cell</span>
+                            <span class="about-stat-label">Vice-Chairperson, SASTRA</span>
+                        </div>
+                        <div class="about-stat-card glass-card reveal-up" style="--reveal-delay: 0.45s">
+                            <span class="about-stat-icon">⚡</span>
+                            <span class="about-stat-value">Full-Stack</span>
+                            <span class="about-stat-label">React · Next.js · FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SKILLS SECTION ===================== -->
+    <section class="skills-section" id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+
+            <!-- Bento Grid Skills -->
+            <div class="skills-bento">
+
+                <!-- Programming — large tile -->
+                <div class="skill-bento-tile skill-tile-large bento-tile card-gradient-border reveal-up" style="--reveal-delay: 0s">
+                    <div class="skill-tile-header">
+                        <div class="skill-cat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6" />
+                                <polyline points="8 6 2 12 8 18" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-cat-title">Programming</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><i class="devicon-python-plain colored"></i> Python</span>
+                        <span class="skill-pill"><i class="devicon-c-plain colored"></i> C</span>
+                        <span class="skill-pill"><i class="devicon-cplusplus-plain colored"></i> C++</span>
+                        <span class="skill-pill"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                        <span class="skill-pill">R</span>
+                    </div>
+                    <div class="skill-tile-glow"></div>
+                </div>
+
+                <!-- AI / Machine Learning -->
+                <div class="skill-bento-tile skill-tile-medium bento-tile card-gradient-border reveal-up" style="--reveal-delay: 0.05s">
+                    <div class="skill-tile-header">
+                        <div class="skill-cat-icon skill-icon-accent">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3" />
+                                <path
+                                    d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.4 4.4l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.4-4.4l4.2-4.2" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-cat-title">AI / Machine Learning</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill">AI Agents</span>
+                        <span class="skill-pill">LLMs</span>
+                        <span class="skill-pill">NLP</span>
+                        <span class="skill-pill">Explainable AI</span>
+                        <span class="skill-pill">Deep Neural Networks</span>
+                        <span class="skill-pill">Adaptive Whale Optimization</span>
+                    </div>
+                    <div class="skill-tile-glow skill-glow-secondary"></div>
+                </div>
+
+                <!-- Frontend -->
+                <div class="skill-bento-tile skill-tile-small bento-tile card-gradient-border reveal-up" style="--reveal-delay: 0.1s">
+                    <div class="skill-tile-header">
+                        <div class="skill-cat-icon skill-icon-tertiary">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M9 3v18M3 9h18M3 15h18" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-cat-title">Frontend</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><i class="devicon-react-original colored"></i> React</span>
+                        <span class="skill-pill"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                        <span class="skill-pill"><i class="devicon-tailwindcss-plain colored"></i> Tailwind CSS</span>
+                        <span class="skill-pill"><i class="devicon-html5-plain colored"></i> HTML5</span>
+                        <span class="skill-pill"><i class="devicon-css3-plain colored"></i> CSS3</span>
+                    </div>
+                    <div class="skill-tile-glow skill-glow-tertiary"></div>
+                </div>
+
+                <!-- Backend -->
+                <div class="skill-bento-tile skill-tile-small bento-tile card-gradient-border reveal-up" style="--reveal-delay: 0.15s">
+                    <div class="skill-tile-header">
+                        <div class="skill-cat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" />
+                                <path d="M8 21h8M12 17v4" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-cat-title">Backend</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+                        <span class="skill-pill"><i class="devicon-flask-original"></i> Flask</span>
+                        <span class="skill-pill">REST APIs</span>
+                    </div>
+                    <div class="skill-tile-glow"></div>
+                </div>
+
+                <!-- Databases -->
+                <div class="skill-bento-tile skill-tile-small bento-tile card-gradient-border reveal-up" style="--reveal-delay: 0.2s">
+                    <div class="skill-tile-header">
+                        <div class="skill-cat-icon skill-icon-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-cat-title">Databases</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                        <span class="skill-pill"><i class="devicon-sqlite-plain colored"></i> SQLite</span>
+                    </div>
+                    <div class="skill-tile-glow skill-glow-secondary"></div>
+                </div>
+
+                <!-- Cloud / Tools — wide tile -->
+                <div class="skill-bento-tile skill-tile-wide bento-tile card-gradient-border reveal-up" style="--reveal-delay: 0.25s">
+                    <div class="skill-tile-header">
+                        <div class="skill-cat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-cat-title">Cloud / Tools</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><i class="devicon-vercel-plain"></i> Vercel</span>
+                        <span class="skill-pill">Render</span>
+                        <span class="skill-pill">Hugging Face</span>
+                        <span class="skill-pill"><i class="devicon-git-plain colored"></i> Git</span>
+                        <span class="skill-pill"><i class="devicon-github-original"></i> GitHub</span>
+                        <span class="skill-pill"><i class="devicon-vscode-plain colored"></i> VS Code</span>
+                    </div>
+                    <div class="skill-tile-glow"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== WHAT I BUILD SECTION ===================== -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">What I Build</h2>
+            <div class="services-grid">
+
+                <div class="service-card glass-card reveal-up" style="--reveal-delay: 0s">
+                    <div class="service-number">01</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3" />
+                                <path
+                                    d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.4 4.4l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.4-4.4l4.2-4.2" />
+                            </svg>
+                        </div>
+                        <h3 class="service-title">AI Systems</h3>
+                    </div>
+                    <p class="service-description">Building multi-agent pipelines, LLM-powered workflows, and NLP
+                        applications — from prompt design to backend orchestration.</p>
+                    <ul class="service-features">
+                        <li>AI Agents &amp; LLMs</li>
+                        <li>Multi-Agent Workflows</li>
+                        <li>NLP &amp; Intelligent Pipelines</li>
+                    </ul>
+                    <div class="service-cta-line"></div>
+                </div>
+
+                <div class="service-card glass-card reveal-up" style="--reveal-delay: 0.1s">
+                    <div class="service-number">02</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Backend Engineering</h3>
+                    </div>
+                    <p class="service-description">Implementing REST APIs, job schedulers, concurrency control, and
+                        system-oriented backend logic using FastAPI, Flask, and PostgreSQL.</p>
+                    <ul class="service-features">
+                        <li>FastAPI &amp; Flask</li>
+                        <li>REST APIs &amp; PostgreSQL</li>
+                        <li>Distributed Job Scheduling</li>
+                    </ul>
+                    <div class="service-cta-line"></div>
+                </div>
+
+                <div class="service-card glass-card reveal-up" style="--reveal-delay: 0.2s">
+                    <div class="service-number">03</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M3 3v18h18" />
+                                <path d="m19 9-5 5-4-4-3 3" />
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Data &amp; Machine Learning</h3>
+                    </div>
+                    <p class="service-description">Applying Python, R, and ML techniques to build predictive models,
+                        analyse data, and implement explainable AI approaches.</p>
+                    <ul class="service-features">
+                        <li>Python · R · NumPy · Pandas</li>
+                        <li>Scikit-learn &amp; Deep Learning</li>
+                        <li>Explainable AI</li>
+                    </ul>
+                    <div class="service-cta-line"></div>
+                </div>
+
+                <div class="service-card glass-card reveal-up" style="--reveal-delay: 0.3s">
+                    <div class="service-number">04</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M9 3v18M3 9h6M3 15h6" />
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Full-Stack Applications</h3>
+                    </div>
+                    <p class="service-description">Building end-to-end web applications with React and Next.js on the
+                        frontend, integrated with backend APIs and deployed to cloud platforms.</p>
+                    <ul class="service-features">
+                        <li>React &amp; Next.js</li>
+                        <li>Tailwind CSS</li>
+                        <li>API Integration &amp; Deployment</li>
+                    </ul>
+                    <div class="service-cta-line"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PROJECTS SECTION ===================== -->
+    <section class="case-studies-section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Projects</h2>
+                </div>
+                <p class="section-subtitle">End-to-end systems — AI pipelines, backend infrastructure, and full-stack apps.</p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="project-filters" role="tablist" aria-label="Project categories">
+                <button class="project-filter is-active" data-filter="all" role="tab"
+                    aria-selected="true">All</button>
+                <button class="project-filter" data-filter="ai" role="tab" aria-selected="false">AI / ML</button>
+                <button class="project-filter" data-filter="backend" role="tab"
+                    aria-selected="false">Backend</button>
+                <button class="project-filter" data-filter="fullstack" role="tab"
+                    aria-selected="false">Full-Stack</button>
+                <span class="project-filter-indicator"></span>
+            </div>
+
+            <!-- Horizontal Scroll Projects Track -->
+            <div class="projects-track-wrapper">
+                <div class="projects-track" id="projectsTrack">
+
+                    <!-- Project 01: Financial Distress Prediction -->
+                    <div class="project-card glass-card card-gradient-border" data-category="ai">
+                        <div class="project-card-top">
+                            <span class="project-num">01</span>
+                            <div class="project-image">
+                                <div class="project-image-gradient"
+                                    style="background: linear-gradient(135deg, #03070f 0%, #061428 25%, #0d2a56 55%, #1a4080 80%, #00D1FF 100%);">
+                                </div>
+                                <div class="project-metric-badge">
+                                    <span class="metric-value-static">92.82%</span>
+                                    <span class="metric-label-text">Accuracy</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="case-tag">Machine Learning · Explainable AI</div>
+                            <h3 class="project-title">Financial Distress Prediction</h3>
+                            <p class="project-desc">ML system using Adaptive Whale Optimization and Deep Neural Networks with explainable AI for financial distress classification.</p>
+                            <div class="case-tech-stack">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">DNN</span>
+                                <span class="tech-tag">Explainable AI</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <ul class="project-highlights">
+                                <li><strong>92.82% accuracy</strong> on distress classification</li>
+                                <li><strong>Adaptive Whale Optimization</strong> for feature tuning</li>
+                                <li><strong>Explainable AI</strong> for interpretability</li>
+                            </ul>
+                            <div class="case-actions">
+                                <a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer"
+                                    class="case-btn case-btn-secondary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                    </svg>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 02: Distributed Job Scheduler -->
+                    <div class="project-card glass-card card-gradient-border" data-category="backend">
+                        <div class="project-card-top">
+                            <span class="project-num">02</span>
+                            <div class="project-image">
+                                <div class="project-image-gradient"
+                                    style="background: linear-gradient(135deg, #060410 0%, #100c28 25%, #1e1650 55%, #2d2080 80%, #8B5CF6 100%);">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="case-tag">Backend Engineering · Distributed Systems</div>
+                            <h3 class="project-title">Distributed Job Scheduler</h3>
+                            <p class="project-desc">PostgreSQL-based distributed job scheduling with FOR UPDATE SKIP LOCKED, lease-based ownership, retry handling, and a full-stack dashboard.</p>
+                            <div class="case-tech-stack">
+                                <span class="tech-tag">FastAPI</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Next.js</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <ul class="project-highlights">
+                                <li><strong>FOR UPDATE SKIP LOCKED</strong> concurrency control</li>
+                                <li><strong>Lease-based ownership</strong> with auto-expiry</li>
+                                <li><strong>Full-stack</strong> FastAPI + Next.js deployment</li>
+                            </ul>
+                            <div class="case-actions">
+                                <a href="#" class="case-btn case-btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer"
+                                    class="case-btn case-btn-secondary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                    </svg>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 03: AI Startup Validator -->
+                    <div class="project-card glass-card card-gradient-border" data-category="fullstack">
+                        <div class="project-card-top">
+                            <span class="project-num">03</span>
+                            <div class="project-image">
+                                <div class="project-image-gradient"
+                                    style="background: linear-gradient(135deg, #0a0e1a 0%, #12183a 30%, #1c2a60 60%, #EC4899 100%);">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="case-tag">Multi-Agent AI System</div>
+                            <h3 class="project-title">AI Startup Validator</h3>
+                            <p class="project-desc">Multi-agent AI system for startup idea evaluation via sequential market research, financial viability, and risk assessment.</p>
+                            <div class="case-tech-stack">
+                                <span class="tech-tag">LangChain</span>
+                                <span class="tech-tag">FastAPI</span>
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">LLMs</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <ul class="project-highlights">
+                                <li><strong>Multi-agent workflow</strong> with sequential analysis</li>
+                                <li><strong>Weighted scoring</strong> combining opportunity + risk</li>
+                                <li><strong>Deployed</strong> on Vercel and Render</li>
+                            </ul>
+                            <div class="case-actions">
+                                <a href="https://ai-startup-validator-topaz.vercel.app/" target="_blank"
+                                    rel="noopener noreferrer" class="case-btn case-btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer"
+                                    class="case-btn case-btn-secondary">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 04: AI Resume Screener -->
+                    <div class="project-card glass-card card-gradient-border" data-category="ai">
+                        <div class="project-card-top">
+                            <span class="project-num">04</span>
+                            <div class="project-image">
+                                <img src="project-screener.png" alt="AI Resume Screener interface" class="project-image-gradient"
+                                    style="object-fit: cover;"
+                                    onerror="this.outerHTML='<div class=\'project-image-gradient\' style=\'background: linear-gradient(135deg, #041818 0%, #0a3030 35%, #006060 70%, #00D1FF 100%);\' ></div>'">
+                            </div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="case-tag">NLP · AI</div>
+                            <h3 class="project-title">AI Resume Screener</h3>
+                            <p class="project-desc">AI-powered resume screening that parses documents, extracts skills, and matches candidates via semantic similarity using the Gemini API.</p>
+                            <div class="case-tech-stack">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Gemini API</span>
+                                <span class="tech-tag">PyMuPDF</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <ul class="project-highlights">
+                                <li><strong>Semantic similarity</strong> via Gemini API</li>
+                                <li><strong>PDF parsing</strong> with PyMuPDF</li>
+                                <li><strong>Structured JSON</strong> skill extraction</li>
+                            </ul>
+                            <div class="case-actions">
+                                <a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer"
+                                    class="case-btn case-btn-secondary">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Scroll hint arrows -->
+                <button class="track-arrow track-prev" id="trackPrev" aria-label="Previous project">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="track-arrow track-next" id="trackNext" aria-label="Next project">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+            <!-- Track dots -->
+            <div class="track-dots" id="trackDots">
+                <span class="track-dot active"></span>
+                <span class="track-dot"></span>
+                <span class="track-dot"></span>
+                <span class="track-dot"></span>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ===================== EXPERIENCE SECTION ===================== -->
+    <section class="leadership-section" id="experience">
+        <div class="container">
+            <h2 class="section-title">Leadership &amp; Involvement</h2>
+            <div class="leadership-grid">
+
+                <div class="leadership-card glass-card card-gradient-border reveal-up" style="--reveal-delay: 0s">
+                    <div class="leadership-role-header">
+                        <div class="leadership-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <div class="leadership-role-info">
+                            <span class="leadership-org">Entrepreneurship Cell, SASTRA Deemed University</span>
+                            <h3 class="leadership-title">Vice-Chairperson</h3>
+                        </div>
+                    </div>
+                    <p class="leadership-desc">Leadership role in the E-Cell, contributing to the growth and operations
+                        of the entrepreneurship ecosystem at SASTRA.</p>
+                    <div class="leadership-tag">Leadership</div>
+                </div>
+
+                <div class="leadership-card glass-card card-gradient-border reveal-up" style="--reveal-delay: 0.15s">
+                    <div class="leadership-role-header">
+                        <div class="leadership-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                            </svg>
+                        </div>
+                        <div class="leadership-role-info">
+                            <span class="leadership-org">Entrepreneurship Cell, SASTRA Deemed University</span>
+                            <h3 class="leadership-title">Executive Coordinator — Promotions &amp; Outreach</h3>
+                        </div>
+                    </div>
+                    <p class="leadership-desc">Coordinating promotions and outreach activities for E-Cell events and
+                        initiatives at SASTRA.</p>
+                    <div class="leadership-tag">Coordination</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== EDUCATION SECTION ===================== -->
+    <section class="education-section" id="education">
+        <div class="container">
+            <h2 class="section-title">Education &amp; Certifications</h2>
+            <div class="edu-outer-grid">
+
+                <!-- Education Card -->
+                <div class="edu-card glass-card card-gradient-border reveal-up" style="--reveal-delay: 0s">
+                    <div class="edu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                        </svg>
+                    </div>
+                    <div class="edu-info">
+                        <span class="edu-degree">B.Tech — Computer Science and Business Systems</span>
+                        <span class="edu-institution">SASTRA Deemed University</span>
+                        <div class="edu-meta">
+                            <span class="edu-badge">Expected 2027</span>
+                            <span class="edu-badge edu-badge-accent">CGPA 8.2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications Grid -->
+                <div class="certs-grid">
+                    <div class="cert-card glass-card reveal-up" style="--reveal-delay: 0.1s">
+                        <div class="cert-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="6" />
+                                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <span class="cert-name">AI Engineer Course</span>
+                            <span class="cert-issuer">Simplilearn</span>
+                        </div>
+                    </div>
+                    <div class="cert-card glass-card reveal-up" style="--reveal-delay: 0.2s">
+                        <div class="cert-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="6" />
+                                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <span class="cert-name">AI Agents</span>
+                            <span class="cert-issuer">Infosys Springboard</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT SECTION ===================== -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-eyebrow-row">
+                <span class="section-eyebrow">Say hello</span>
+            </div>
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-grid">
+                <!-- Left: Contact Info -->
+                <div class="contact-info">
+                    <h3 class="contact-info-title">Get in touch</h3>
+                    <p class="contact-info-desc">Interested in software engineering, AI systems, data-driven
+                        applications, or collaboration? Let's connect.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-detail-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <div class="contact-email-row">
+                                    <a href="mailto:aakashayy04@gmail.com"
+                                        class="contact-value">aakashayy04@gmail.com</a>
+                                    <button class="copy-email-btn" id="copyEmailBtn"
+                                        onclick="navigator.clipboard.writeText('aakashayy04@gmail.com').then(()=>{this.classList.add('copied');this.title='Copied!';setTimeout(()=>{this.classList.remove('copied');this.title='Copy email';},2000)})"
+                                        title="Copy email">
+                                        <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="14"
+                                            height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                                            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                        </svg>
+                                        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="14"
+                                            height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Location</span>
+                                <span class="contact-value">Tamil Nadu, India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-socials">
+                        <a href="https://github.com/Aakash0412" target="_blank" class="social-link"
+                            aria-label="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aakash-a-4bb3a32b3/" target="_blank"
+                            class="social-link" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Quick CTA -->
+                    <a href="mailto:aakashayy04@gmail.com" class="contact-direct-btn btn btn-primary btn-shine">
+                        Send me a message
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                    </a>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="contact-form-wrapper">
+                    <form action="https://formspree.io/f/xreyrakb" method="POST" class="contact-form"
+                        id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName" class="form-label">Name</label>
+                            <input type="text" id="contactName" name="name" class="form-input"
+                                placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail" class="form-label">Email</label>
+                            <input type="email" id="contactEmail" name="email" class="form-input"
+                                placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject" class="form-label">Subject</label>
+                            <input type="text" id="contactSubject" name="subject" class="form-input"
+                                placeholder="What's this about?">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage" class="form-label">Message</label>
+                            <textarea id="contactMessage" name="message" class="form-input form-textarea"
+                                placeholder="Tell me more..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit btn-shine">
+                            Send Message
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="m22 2-7 20-4-9-9-4Z" />
+                                <path d="M22 2 11 13" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <!-- Marquee Strip -->
+        <div class="footer-marquee">
+            <div class="marquee-track">
+                <span class="marquee-content">
+                    AI Systems &nbsp;·&nbsp; Backend Engineering &nbsp;·&nbsp; Machine Learning &nbsp;·&nbsp; Full-Stack Apps &nbsp;·&nbsp; Open to Internships &nbsp;·&nbsp; Data Analytics &nbsp;·&nbsp; LLMs &nbsp;·&nbsp; FastAPI &nbsp;·&nbsp; React &nbsp;·&nbsp; Next.js &nbsp;·&nbsp;
+                </span>
+                <span class="marquee-content" aria-hidden="true">
+                    AI Systems &nbsp;·&nbsp; Backend Engineering &nbsp;·&nbsp; Machine Learning &nbsp;·&nbsp; Full-Stack Apps &nbsp;·&nbsp; Open to Internships &nbsp;·&nbsp; Data Analytics &nbsp;·&nbsp; LLMs &nbsp;·&nbsp; FastAPI &nbsp;·&nbsp; React &nbsp;·&nbsp; Next.js &nbsp;·&nbsp;
+                </span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Aakash A.</h3>
+                    <p>AI Systems &nbsp;·&nbsp; Backend Engineering &nbsp;·&nbsp; Data Analytics</p>
+                </div>
+
+                <div class="footer-links-group">
+                    <h4>Connect</h4>
+                    <a href="https://www.linkedin.com/in/aakash-a-4bb3a32b3/" target="_blank"
+                        class="footer-link footer-social-link" data-brand="linkedin">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/Aakash0412" target="_blank"
+                        class="footer-link footer-social-link" data-brand="github">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="mailto:aakashayy04@gmail.com" class="footer-link footer-social-link"
+                        data-brand="email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
+                        Email
+                    </a>
+                    <a href="aakash-resume.pdf" class="footer-link" download>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                        </svg>
+                        Resume
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Aakash A.</p>
+                <p class="footer-credit">Built with HTML, CSS &amp; JS</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- ⌘K Shortcut Hint -->
+    <div class="shortcut-hint" id="shortcutHint">
+        Press <kbd>⌘</kbd><kbd>K</kbd> to navigate
+    </div>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>This site uses cookies to enhance your experience.</p>
+        <div class="cookie-actions">
+            <button class="cookie-accept" id="cookieAccept">Accept</button>
+            <button class="cookie-decline" id="cookieDecline">Decline</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
