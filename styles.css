@@ -402,6 +402,14 @@ input:focus-visible, textarea:focus-visible {
     max-width: var(--max-w);
     margin: 0 auto;
     width: 100%;
+    display: grid;
+    gap: 40px;
+    align-items: center;
+}
+@media (min-width: 900px) {
+    .hero-inner { grid-template-columns: 1.25fr 1fr; gap: 64px; }
+}
+.hero-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -438,7 +446,6 @@ input:focus-visible, textarea:focus-visible {
 }
 .role-item.is-active { opacity: 1; transform: translateY(0); }
 .role-item.is-leaving { opacity: 0; transform: translateY(-100%); }
-
 .hero-sub {
     font-size: 15px;
     color: var(--muted);
@@ -456,44 +463,22 @@ input:focus-visible, textarea:focus-visible {
     text-transform: uppercase;
     color: var(--muted);
 }
-
-/* Hero Decoration - Duotone Photo */
-.hero-decor {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 42%;
-    height: 85%;
-    pointer-events: none;
-    opacity: 0.85; /* Soften the overall contrast to keep text dominant */
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-}
-.duotone-wrapper {
+.hero-visual {
     width: 100%;
-    height: 100%;
-    background-color: var(--fg);
-    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
 }
-.duotone-wrapper::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: var(--bg);
-    mix-blend-mode: lighten;
-    pointer-events: none;
+@media (min-width: 900px) {
+    .hero-visual { margin: 0 0 0 auto; max-width: 480px; }
 }
-.duotone-img {
+.hero-photo {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
-    object-position: center 15%; /* Keep face in upper center */
-    filter: grayscale(100%) contrast(1.15);
-    mix-blend-mode: multiply;
-}
-@media (max-width: 1024px) {
-    .hero-decor { display: none; }
+    object-position: center 20%;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    filter: grayscale(100%) contrast(1.05);
 }
 
 /* ============================================================
