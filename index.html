@@ -96,26 +96,23 @@
 
     <!-- HERO -->
     <section id="home" class="hero">
+        <div class="bg-grid-pattern"></div>
         <div class="hero-inner">
             <div class="hero-content">
                 <div class="reveal-fade" style="--delay:0ms">
                     <span class="mono-badge">&#10022; CSBS Student · Open to Internships</span>
                 </div>
-                <h1 class="hero-name reveal-fade" style="--delay:60ms">Aakash A.</h1>
-                <div class="hero-role reveal-fade" style="--delay:120ms" aria-live="polite">
-                    <span class="role-prefix">I build&nbsp;</span>
-                    <span class="role-track" id="roleTrack">
-                        <span class="role-item is-active">AI Systems</span>
-                        <span class="role-item">Backend APIs</span>
-                        <span class="role-item">ML Pipelines</span>
-                        <span class="role-item">Full-Stack Apps</span>
-                    </span>
+                <h1 class="hero-name stagger-reveal">
+                    <span style="animation-delay: 50ms">Aakash</span>
+                    <span style="animation-delay: 150ms">A.</span>
+                </h1>
+                <div class="hero-role reveal-fade" style="--delay:250ms">
+                    <span class="role-prefix">I build AI systems, backend APIs, and intelligent data-driven applications.</span>
                 </div>
-                <p class="hero-sub reveal-fade" style="--delay:180ms">B.Tech Computer Science &amp; Business Systems student at SASTRA — building systems end-to-end, from model training to production deployment.</p>
-                <div class="hero-ctas reveal-fade" style="--delay:240ms">
+                <p class="hero-sub reveal-fade" style="--delay:350ms">B.Tech CSBS student at SASTRA — building systems end-to-end, from model training to production deployment.</p>
+                <div class="hero-ctas reveal-fade" style="--delay:450ms">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="aakash-resume.pdf" class="btn btn-ghost" download>Resume &#8595;</a>
-                    <a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &#8599;</a>
+                    <a href="#contact" class="btn btn-ghost">Let's Connect</a>
                 </div>
             </div>
             
@@ -169,29 +166,55 @@
                 <p class="eyebrow">Skills</p>
                 <h2>Technical toolkit</h2>
             </div>
-            <div class="skills-grid reveal-fade" style="--delay:60ms">
-                <div class="skill-cell"><p class="skill-title">Programming</p><div class="skill-pills"><span>Python</span><span>C</span><span>C++</span><span>JavaScript</span><span>R</span></div></div>
-                <div class="skill-cell"><p class="skill-title">AI / Machine Learning</p><div class="skill-pills"><span>AI Agents</span><span>LLMs</span><span>NLP</span><span>Explainable AI</span><span>Deep Neural Networks</span><span>Adaptive Whale Optimization</span></div></div>
-                <div class="skill-cell"><p class="skill-title">Frontend</p><div class="skill-pills"><span>React</span><span>Next.js</span><span>Tailwind CSS</span><span>HTML5</span><span>CSS3</span></div></div>
-                <div class="skill-cell"><p class="skill-title">Backend</p><div class="skill-pills"><span>FastAPI</span><span>Flask</span><span>REST APIs</span></div></div>
-                <div class="skill-cell"><p class="skill-title">Databases</p><div class="skill-pills"><span>PostgreSQL</span><span>SQLite</span></div></div>
-                <div class="skill-cell"><p class="skill-title">Cloud / Tools</p><div class="skill-pills"><span>Vercel</span><span>Render</span><span>Hugging Face</span><span>Git</span><span>GitHub</span><span>VS Code</span></div></div>
+            <div class="bento-grid reveal-fade" style="--delay:60ms; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <div class="bento-card" onmousemove="handleBentoHover(event)"><div class="bento-card-content"><p class="skill-title">Programming</p><div class="skill-pills"><span>Python</span><span>C</span><span>C++</span><span>JavaScript</span><span>R</span></div></div></div>
+                <div class="bento-card" onmousemove="handleBentoHover(event)"><div class="bento-card-content"><p class="skill-title">AI / Machine Learning</p><div class="skill-pills"><span>AI Agents</span><span>LLMs</span><span>NLP</span><span>Explainable AI</span><span>Deep Neural Networks</span><span>Adaptive Whale Optimization</span></div></div></div>
+                <div class="bento-card" onmousemove="handleBentoHover(event)"><div class="bento-card-content"><p class="skill-title">Frontend</p><div class="skill-pills"><span>React</span><span>Next.js</span><span>Tailwind CSS</span><span>HTML5</span><span>CSS3</span></div></div></div>
+                <div class="bento-card" onmousemove="handleBentoHover(event)"><div class="bento-card-content"><p class="skill-title">Backend</p><div class="skill-pills"><span>FastAPI</span><span>Flask</span><span>REST APIs</span></div></div></div>
+                <div class="bento-card" onmousemove="handleBentoHover(event)"><div class="bento-card-content"><p class="skill-title">Databases</p><div class="skill-pills"><span>PostgreSQL</span><span>SQLite</span></div></div></div>
+                <div class="bento-card" onmousemove="handleBentoHover(event)"><div class="bento-card-content"><p class="skill-title">Cloud / Tools</p><div class="skill-pills"><span>Vercel</span><span>Render</span><span>Hugging Face</span><span>Git</span><span>GitHub</span><span>VS Code</span></div></div></div>
             </div>
         </div>
     </section>
 
-    <!-- WHAT I BUILD -->
+    <!-- ENGINEERING APPROACH -->
     <section id="services" class="section hairline-t">
         <div class="container">
             <div class="section-heading reveal-fade">
-                <p class="eyebrow">What I build</p>
-                <h2>Four things I do well</h2>
+                <p class="eyebrow">Engineering Approach</p>
+                <h2>How I build systems</h2>
             </div>
-            <div class="services-grid reveal-fade" style="--delay:60ms">
-                <div class="service-cell"><p class="service-num">01</p><h3 class="service-title">AI Systems</h3><p class="service-body">Multi-agent pipelines, LLM-powered workflows and NLP applications — from prompt design through backend orchestration.</p><ul class="service-points"><li>AI agents &amp; LLMs</li><li>Multi-agent workflows</li><li>NLP &amp; intelligent pipelines</li></ul></div>
-                <div class="service-cell"><p class="service-num">02</p><h3 class="service-title">Backend Engineering</h3><p class="service-body">REST APIs, job schedulers and concurrency control built with FastAPI, Flask and PostgreSQL.</p><ul class="service-points"><li>FastAPI &amp; Flask</li><li>REST APIs &amp; PostgreSQL</li><li>Distributed job scheduling</li></ul></div>
-                <div class="service-cell"><p class="service-num">03</p><h3 class="service-title">Data &amp; Machine Learning</h3><p class="service-body">Predictive models and data analysis in Python and R, with explainable AI where interpretation matters.</p><ul class="service-points"><li>Python · R · NumPy · Pandas</li><li>Scikit-learn &amp; deep learning</li><li>Explainable AI</li></ul></div>
-                <div class="service-cell"><p class="service-num">04</p><h3 class="service-title">Full-Stack Applications</h3><p class="service-body">End-to-end web apps in React and Next.js, wired to backend APIs and deployed to the cloud.</p><ul class="service-points"><li>React &amp; Next.js</li><li>Tailwind CSS</li><li>API integration &amp; deployment</li></ul></div>
+            <div class="timeline reveal-fade" style="--delay:60ms">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="service-num" style="margin-bottom: 4px;">01. Architecture &amp; Data</p>
+                    <h3 class="service-title" style="font-size: 1.5rem; margin-bottom: 12px;">Database &amp; Schema Design</h3>
+                    <p class="service-body" style="max-width: 500px;">Designing PostgreSQL schemas and optimizing distributed data patterns. Leveraging concurrency control (FOR UPDATE SKIP LOCKED) to build highly scalable backends.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="service-num" style="margin-bottom: 4px;">02. Backend Infrastructure</p>
+                    <h3 class="service-title" style="font-size: 1.5rem; margin-bottom: 12px;">API Development</h3>
+                    <p class="service-body" style="max-width: 500px;">Developing robust, asynchronous APIs using FastAPI and Flask. Ensuring secure endpoints, token authentication, and clean modular architecture.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="service-num" style="margin-bottom: 4px;">03. Intelligence Layer</p>
+                    <h3 class="service-title" style="font-size: 1.5rem; margin-bottom: 12px;">AI &amp; ML Integration</h3>
+                    <p class="service-body" style="max-width: 500px;">Integrating LLMs via LangChain, orchestrating multi-agent systems, and building custom predictive models using Scikit-Learn and Deep Neural Networks.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="service-num" style="margin-bottom: 4px;">04. Interface Design</p>
+                    <h3 class="service-title" style="font-size: 1.5rem; margin-bottom: 12px;">Frontend Engineering</h3>
+                    <p class="service-body" style="max-width: 500px;">Crafting highly responsive and accessible UI components with React, Next.js, and Tailwind CSS. Implementing modern animations for premium user experiences.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="service-num" style="margin-bottom: 4px;">05. Production</p>
+                    <h3 class="service-title" style="font-size: 1.5rem; margin-bottom: 12px;">Deployment &amp; Operations</h3>
+                    <p class="service-body" style="max-width: 500px;">Deploying full-stack applications on Vercel and backend services on Render. Configuring CI/CD and ensuring reliable cloud orchestration.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -232,28 +255,22 @@
                     </div>
                     <div class="project-right project-right-empty"></div>
                 </article>
-                <article class="project-row reveal-fade" data-category="ai" style="--delay:120ms">
-                    <div class="project-left">
+                <div class="projects-bento-grid">
+                    <article class="project-bento reveal-fade" data-category="ai" style="--delay:120ms">
                         <div class="project-meta"><span class="project-num">03</span><span class="project-kicker">Multi-Agent AI System</span></div>
-                        <h3 class="project-title">AI Startup Validator</h3>
+                        <h3 class="project-title" style="font-size: 1.4rem;">AI Startup Validator</h3>
                         <p class="project-body">A multi-agent system that evaluates startup ideas through sequential market research, financial viability and risk assessment.</p>
-                        <ul class="project-highlights"><li>&#8212; Multi-agent workflow with sequential analysis</li><li>&#8212; Weighted scoring combining opportunity + risk</li><li>&#8212; Deployed on Vercel and Render</li></ul>
-                        <div class="project-tech"><span>LangChain</span><span>FastAPI</span><span>Next.js</span><span>LLMs</span></div>
-                        <div class="project-links"><a href="https://ai-startup-validator-topaz.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-primary">Live demo &#8599;</a><a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a></div>
-                    </div>
-                    <div class="project-right project-right-empty"></div>
-                </article>
-                <article class="project-row reveal-fade" data-category="ai" style="--delay:140ms">
-                    <div class="project-left">
+                        <div class="project-tech"><span>LangChain</span><span>FastAPI</span><span>Next.js</span></div>
+                        <div class="project-links" style="margin-top: auto; padding-top: 12px;"><a href="https://ai-startup-validator-topaz.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-primary">Live demo &#8599;</a><a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a></div>
+                    </article>
+                    <article class="project-bento reveal-fade" data-category="ai" style="--delay:140ms">
                         <div class="project-meta"><span class="project-num">04</span><span class="project-kicker">NLP · AI</span></div>
-                        <h3 class="project-title">AI Resume Screener</h3>
+                        <h3 class="project-title" style="font-size: 1.4rem;">AI Resume Screener</h3>
                         <p class="project-body">Resume screening that parses documents, extracts skills and matches candidates through semantic similarity using the Gemini API.</p>
-                        <ul class="project-highlights"><li>&#8212; Semantic similarity via Gemini API</li><li>&#8212; PDF parsing with PyMuPDF</li><li>&#8212; Structured JSON skill extraction</li></ul>
                         <div class="project-tech"><span>Python</span><span>Gemini API</span><span>PyMuPDF</span></div>
-                        <div class="project-links"><a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a></div>
-                    </div>
-                    <div class="project-right project-right-empty"></div>
-                </article>
+                        <div class="project-links" style="margin-top: auto; padding-top: 12px;"><a href="https://github.com/Aakash0412" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a></div>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
@@ -262,9 +279,17 @@
     <section id="experience" class="section hairline-t">
         <div class="container">
             <div class="section-heading reveal-fade"><p class="eyebrow">Experience</p><h2>Leadership &amp; involvement</h2></div>
-            <div class="row-list reveal-fade" style="--delay:60ms">
-                <div class="row-item"><div class="row-left"><p class="row-tag">Leadership</p></div><div class="row-right"><h3 class="row-title">Vice-Chairperson</h3><p class="row-org">Entrepreneurship Cell, SASTRA Deemed University</p><p class="row-body">Leading E-Cell operations and contributing to the growth of the entrepreneurship ecosystem at SASTRA.</p></div></div>
-                <div class="row-item"><div class="row-left"><p class="row-tag">Coordination</p></div><div class="row-right"><h3 class="row-title">Executive Coordinator — Promotions &amp; Outreach</h3><p class="row-org">Entrepreneurship Cell, SASTRA Deemed University</p><p class="row-body">Running promotions and outreach for E-Cell events and initiatives across campus.</p></div></div>
+            <div class="credential-grid reveal-fade" style="--delay:60ms">
+                <div class="credential-card">
+                    <p class="credential-tag">Leadership</p>
+                    <h3 class="credential-title">Vice-Chairperson</h3>
+                    <p class="credential-org">Entrepreneurship Cell, SASTRA Deemed University</p>
+                </div>
+                <div class="credential-card">
+                    <p class="credential-tag">Coordination</p>
+                    <h3 class="credential-title">Executive Coordinator</h3>
+                    <p class="credential-org">Entrepreneurship Cell, SASTRA Deemed University</p>
+                </div>
             </div>
         </div>
     </section>
@@ -273,10 +298,22 @@
     <section id="education" class="section hairline-t">
         <div class="container">
             <div class="section-heading reveal-fade"><p class="eyebrow">Education</p><h2>Education &amp; certifications</h2></div>
-            <div class="row-list reveal-fade" style="--delay:60ms">
-                <div class="edu-row"><div><h3 class="edu-title">B.Tech — Computer Science and Business Systems</h3><p class="edu-org">SASTRA Deemed University</p></div><p class="edu-meta">Expected 2027 · CGPA 8.2</p></div>
-                <div class="edu-row"><div><h3 class="edu-title">AI Engineer Course</h3><p class="edu-org">Simplilearn</p></div><p class="edu-meta">Certification</p></div>
-                <div class="edu-row"><div><h3 class="edu-title">AI Agents</h3><p class="edu-org">Infosys Springboard</p></div><p class="edu-meta">Certification</p></div>
+            <div class="credential-grid reveal-fade" style="--delay:60ms">
+                <div class="credential-card">
+                    <p class="credential-tag">Expected 2027 · CGPA 8.2</p>
+                    <h3 class="credential-title">B.Tech — CSBS</h3>
+                    <p class="credential-org">SASTRA Deemed University</p>
+                </div>
+                <div class="credential-card">
+                    <p class="credential-tag">Certification</p>
+                    <h3 class="credential-title">AI Engineer Course</h3>
+                    <p class="credential-org">Simplilearn</p>
+                </div>
+                <div class="credential-card">
+                    <p class="credential-tag">Certification</p>
+                    <h3 class="credential-title">AI Agents</h3>
+                    <p class="credential-org">Infosys Springboard</p>
+                </div>
             </div>
         </div>
     </section>

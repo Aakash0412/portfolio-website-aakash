@@ -285,7 +285,7 @@
 /* ---------- PROJECT FILTER ---------- */
 (function () {
     const btns = document.querySelectorAll('.filter-btn');
-    const rows = document.querySelectorAll('.project-row');
+    const rows = document.querySelectorAll('#projectsList article[data-category]');
     if (!btns.length) return;
 
     btns.forEach(btn => {
@@ -377,4 +377,13 @@
         });
     }
 })();
+
+/* ---------- BENTO HOVER SPOTLIGHT ---------- */
+function handleBentoHover(e) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+}
 
