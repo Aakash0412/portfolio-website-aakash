@@ -13,6 +13,31 @@ export default async function PortfolioPage() {
     where: { isPublished: true },
     orderBy: { displayOrder: 'asc' }
   });
+  const experience = await prisma.experience.findMany({
+    where: { isPublished: true },
+    orderBy: { displayOrder: 'asc' }
+  });
+  const education = await prisma.education.findMany({
+    where: { isPublished: true },
+    orderBy: { displayOrder: 'asc' }
+  });
+  const leadership = await prisma.leadership.findMany({
+    where: { isPublished: true },
+    orderBy: { displayOrder: 'asc' }
+  });
+  const skillCategories = await prisma.skillCategory.findMany({
+    include: {
+      skills: {
+        where: { isVisible: true },
+        orderBy: { displayOrder: 'asc' }
+      }
+    },
+    orderBy: { displayOrder: 'asc' }
+  });
+  const achievements = await prisma.achievement.findMany({
+    where: { isPublished: true },
+    orderBy: { displayOrder: 'asc' }
+  });
 
   return (
     <>
@@ -147,12 +172,18 @@ export default async function PortfolioPage() {
                 <h2>Technical toolkit</h2>
             </div>
             <div className="bento-grid reveal-fade" style={{"--delay": "60ms", "gridTemplateColumns": "repeat(auto-fit, minmax(280px, 1fr))"} as React.CSSProperties}>
-                <div className="bento-card"><div className="bento-card-content"><p className="skill-title">Programming</p><div className="skill-pills"><span>Python</span><span>C</span><span>C++</span><span>JavaScript</span><span>R</span></div></div></div>
-                <div className="bento-card"><div className="bento-card-content"><p className="skill-title">AI / Machine Learning</p><div className="skill-pills"><span>AI Agents</span><span>LLMs</span><span>NLP</span><span>Explainable AI</span><span>Deep Neural Networks</span><span>Adaptive Whale Optimization</span></div></div></div>
-                <div className="bento-card"><div className="bento-card-content"><p className="skill-title">Frontend</p><div className="skill-pills"><span>React</span><span>Next.js</span><span>Tailwind CSS</span><span>HTML5</span><span>CSS3</span></div></div></div>
-                <div className="bento-card"><div className="bento-card-content"><p className="skill-title">Backend</p><div className="skill-pills"><span>FastAPI</span><span>Flask</span><span>REST APIs</span></div></div></div>
-                <div className="bento-card"><div className="bento-card-content"><p className="skill-title">Databases</p><div className="skill-pills"><span>PostgreSQL</span><span>SQLite</span></div></div></div>
-                <div className="bento-card"><div className="bento-card-content"><p className="skill-title">Cloud / Tools</p><div className="skill-pills"><span>Vercel</span><span>Render</span><span>Hugging Face</span><span>Git</span><span>GitHub</span><span>VS Code</span></div></div></div>
+                {skillCategories.map(category => (
+                  <div key={category.id} className="bento-card">
+                    <div className="bento-card-content">
+                      <p className="skill-title">{category.name}</p>
+                      <div className="skill-pills">
+                        {category.skills.map(skill => (
+                          <span key={skill.id}>{skill.name}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
             </div>
         </div>
     </section>
@@ -256,16 +287,20 @@ export default async function PortfolioPage() {
         <div className="container">
             <div className="section-heading reveal-fade"><p className="eyebrow">Experience</p><h2>Leadership &amp; involvement</h2></div>
             <div className="credential-grid reveal-fade" style={{ "--delay": "60ms" } as React.CSSProperties}>
-                <div className="credential-card">
-                    <p className="credential-tag">Leadership</p>
-                    <h3 className="credential-title">Vice-Chairperson</h3>
-                    <p className="credential-org">Entrepreneurship Cell, SASTRA Deemed University</p>
-                </div>
-                <div className="credential-card">
-                    <p className="credential-tag">Coordination</p>
-                    <h3 className="credential-title">Executive Coordinator</h3>
-                    <p className="credential-org">Entrepreneurship Cell, SASTRA Deemed University</p>
-                </div>
+                {experience.map(exp => (
+                  <div key={exp.id} className="credential-card">
+                      <p className="credential-tag">{exp.startDate} - {exp.endDate || (exp.isCurrent ? 'Present' : '')}</p>
+                      <h3 className="credential-title">{exp.role}</h3>
+                      <p className="credential-org">{exp.organization}</p>
+                  </div>
+                ))}
+                {leadership.map(item => (
+                  <div key={item.id} className="credential-card">
+                      <p className="credential-tag">Leadership</p>
+                      <h3 className="credential-title">{item.role}</h3>
+                      <p className="credential-org">{item.organization}</p>
+                  </div>
+                ))}
             </div>
         </div>
     </section>
@@ -275,11 +310,13 @@ export default async function PortfolioPage() {
         <div className="container">
             <div className="section-heading reveal-fade"><p className="eyebrow">Education</p><h2>Education &amp; certifications</h2></div>
             <div className="credential-grid reveal-fade" style={{ "--delay": "60ms" } as React.CSSProperties}>
-                <div className="credential-card">
-                    <p className="credential-tag">Expected 2027 · CGPA 8.2</p>
-                    <h3 className="credential-title">B.Tech — CSBS</h3>
-                    <p className="credential-org">SASTRA Deemed University</p>
-                </div>
+                {education.map(edu => (
+                  <div key={edu.id} className="credential-card">
+                      <p className="credential-tag">{edu.startDate} - {edu.endDate} {edu.grade ? `· ${edu.grade}` : ''}</p>
+                      <h3 className="credential-title">{edu.degree} {edu.field ? `— ${edu.field}` : ''}</h3>
+                      <p className="credential-org">{edu.institution}</p>
+                  </div>
+                ))}
                 
                 {certifications.map((cert) => {
                   if (cert.certificateImageUrl) {
