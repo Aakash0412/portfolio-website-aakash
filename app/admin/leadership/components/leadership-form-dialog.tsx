@@ -31,53 +31,53 @@ export function LeadershipFormDialog({ leadership, isEditing }: { leadership?: L
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className={isEditing ? "text-blue-400 hover:text-blue-300 text-sm font-medium" : "bg-white text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-zinc-200"}>
+      <DialogTrigger className={isEditing ? "nav-link" : "btn btn-primary"} style={isEditing ? { fontSize: '13px', color: 'var(--fg)' } : { padding: '8px 16px', fontSize: '13px' }}>
         {isEditing ? "Edit" : "Add Leadership"}
       </DialogTrigger>
-      <DialogContent className="bg-zinc-900 border-zinc-800 text-white sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>{isEditing ? "Edit Leadership" : "New Leadership"}</DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          <div className="space-y-2">
-            <Label htmlFor="organization">Organization</Label>
-            <Input id="organization" name="organization" defaultValue={leadership?.organization} required className="bg-zinc-800 border-zinc-700 text-white" />
+      <DialogContent style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '16px', color: 'var(--fg)', padding: '0', overflow: 'hidden' }} className="sm:max-w-[425px]">
+        <div style={{ padding: '24px', borderBottom: '1px solid var(--border)', background: 'var(--surface)' }}>
+          <DialogTitle style={{ fontSize: '1.25rem' }}>{isEditing ? "Edit Leadership" : "New Leadership"}</DialogTitle>
+        </div>
+        <form onSubmit={handleSubmit} className="contact-form" style={{ padding: '24px', background: 'transparent', border: 'none', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="form-group">
+            <Label htmlFor="organization" className="form-label">Organization</Label>
+            <Input id="organization" name="organization" defaultValue={leadership?.organization} required className="form-input" />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="role">Role / Title</Label>
-            <Input id="role" name="role" defaultValue={leadership?.role} required className="bg-zinc-800 border-zinc-700 text-white" />
+          <div className="form-group">
+            <Label htmlFor="role" className="form-label">Role / Title</Label>
+            <Input id="role" name="role" defaultValue={leadership?.role} required className="form-input" />
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="startDate">Start Date</Label>
-              <Input id="startDate" name="startDate" defaultValue={leadership?.startDate || ""} className="bg-zinc-800 border-zinc-700 text-white" placeholder="e.g. 2023" />
+            <div className="form-group">
+              <Label htmlFor="startDate" className="form-label">Start Date</Label>
+              <Input id="startDate" name="startDate" defaultValue={leadership?.startDate || ""} className="form-input" placeholder="e.g. 2023" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="endDate">End Date</Label>
-              <Input id="endDate" name="endDate" defaultValue={leadership?.endDate || ""} className="bg-zinc-800 border-zinc-700 text-white" placeholder="e.g. Present" />
+            <div className="form-group">
+              <Label htmlFor="endDate" className="form-label">End Date</Label>
+              <Input id="endDate" name="endDate" defaultValue={leadership?.endDate || ""} className="form-input" placeholder="e.g. Present" />
             </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <textarea id="description" name="description" defaultValue={leadership?.description || ""} rows={3} className="w-full rounded-md border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-white" />
+          <div className="form-group">
+            <Label htmlFor="description" className="form-label">Description</Label>
+            <textarea id="description" name="description" defaultValue={leadership?.description || ""} rows={3} className="form-input" />
           </div>
           
-          <div className="flex items-center space-x-2">
-            <input type="checkbox" id="isPublished" name="isPublished" value="true" defaultChecked={leadership?.isPublished} className="rounded border-zinc-700 bg-zinc-800 text-white" />
-            <Label htmlFor="isPublished">Publish on website</Label>
+          <div className="flex items-center space-x-3 mt-2">
+            <input type="checkbox" id="isPublished" name="isPublished" value="true" defaultChecked={leadership?.isPublished} style={{ accentColor: 'var(--fg)', width: '16px', height: '16px' }} />
+            <Label htmlFor="isPublished" className="form-label" style={{ marginBottom: '0', cursor: 'pointer' }}>Publish on website</Label>
           </div>
           
-          <div className="flex justify-between pt-4">
+          <div className="flex justify-between pt-4 mt-2" style={{ borderTop: '1px solid var(--border)' }}>
             {isEditing ? (
-              <button type="button" onClick={handleDelete} disabled={loading} className="text-red-400 text-sm hover:text-red-300">
-                Delete
+              <button type="button" onClick={handleDelete} disabled={loading} style={{ color: 'var(--error)', fontSize: '14px', background: 'none', border: 'none', cursor: 'pointer' }}>
+                Delete Leadership
               </button>
             ) : <div></div>}
-            <div className="space-x-2">
-              <button type="button" onClick={() => setOpen(false)} className="px-4 py-2 text-sm border border-zinc-700 rounded-md hover:bg-zinc-800">
+            <div className="space-x-3 flex">
+              <button type="button" onClick={() => setOpen(false)} style={{ padding: '8px 16px', fontSize: '14px', background: 'none', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--fg)', cursor: 'pointer' }}>
                 Cancel
               </button>
-              <button type="submit" disabled={loading} className="px-4 py-2 text-sm bg-white text-black rounded-md hover:bg-zinc-200">
+              <button type="submit" disabled={loading} className="btn btn-primary form-submit" style={{ padding: '8px 16px', fontSize: '14px', margin: '0' }}>
                 {loading ? "Saving..." : "Save"}
               </button>
             </div>

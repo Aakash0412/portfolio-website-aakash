@@ -33,24 +33,24 @@ export function CertificationFormDialog({ certification, isEditing }: { certific
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className={isEditing ? "text-blue-400 hover:text-blue-300 text-sm font-medium" : "bg-white text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-zinc-200"}>
+      <DialogTrigger className={isEditing ? "nav-link" : "btn btn-primary"} style={isEditing ? { fontSize: '13px', color: 'var(--fg)' } : { padding: '8px 16px', fontSize: '13px' }}>
         {isEditing ? "Edit" : "Add Certification"}
       </DialogTrigger>
-      <DialogContent className="bg-zinc-900 border-zinc-800 text-white sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>{isEditing ? "Edit Certification" : "New Certification"}</DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          <div className="space-y-2">
-            <Label htmlFor="title">Title</Label>
-            <Input id="title" name="title" defaultValue={certification?.title} required className="bg-zinc-800 border-zinc-700" />
+      <DialogContent style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '16px', color: 'var(--fg)', padding: '0', overflow: 'hidden' }} className="sm:max-w-[425px]">
+        <div style={{ padding: '24px', borderBottom: '1px solid var(--border)', background: 'var(--surface)' }}>
+          <DialogTitle style={{ fontSize: '1.25rem' }}>{isEditing ? "Edit Certification" : "New Certification"}</DialogTitle>
+        </div>
+        <form onSubmit={handleSubmit} className="contact-form" style={{ padding: '24px', background: 'transparent', border: 'none', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="form-group">
+            <Label htmlFor="title" className="form-label">Title</Label>
+            <Input id="title" name="title" defaultValue={certification?.title} required className="form-input" />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="issuer">Issuer</Label>
-            <Input id="issuer" name="issuer" defaultValue={certification?.issuer} required className="bg-zinc-800 border-zinc-700" />
+          <div className="form-group">
+            <Label htmlFor="issuer" className="form-label">Issuer</Label>
+            <Input id="issuer" name="issuer" defaultValue={certification?.issuer} required className="form-input" />
           </div>
-          <div className="space-y-2">
-            <Label>Certificate Image / File</Label>
+          <div className="form-group">
+            <Label className="form-label">Certificate Image / File</Label>
             <FileUpload 
               name="certificateImageUrl" 
               value={certificateImageUrl} 
@@ -58,22 +58,22 @@ export function CertificationFormDialog({ certification, isEditing }: { certific
               accept="image/*,application/pdf" 
             />
           </div>
-          <div className="flex items-center space-x-2">
-            <input type="checkbox" id="isPublished" name="isPublished" value="true" defaultChecked={certification?.isPublished} className="rounded border-zinc-700 bg-zinc-800 text-white" />
-            <Label htmlFor="isPublished">Publish on website</Label>
+          <div className="flex items-center space-x-3 mt-2">
+            <input type="checkbox" id="isPublished" name="isPublished" value="true" defaultChecked={certification?.isPublished} style={{ accentColor: 'var(--fg)', width: '16px', height: '16px' }} />
+            <Label htmlFor="isPublished" className="form-label" style={{ marginBottom: '0', cursor: 'pointer' }}>Publish on website</Label>
           </div>
           
-          <div className="flex justify-between pt-4">
+          <div className="flex justify-between pt-4 mt-2" style={{ borderTop: '1px solid var(--border)' }}>
             {isEditing ? (
-              <button type="button" onClick={handleDelete} disabled={loading} className="text-red-400 text-sm hover:text-red-300">
-                Delete
+              <button type="button" onClick={handleDelete} disabled={loading} style={{ color: 'var(--error)', fontSize: '14px', background: 'none', border: 'none', cursor: 'pointer' }}>
+                Delete Certification
               </button>
             ) : <div></div>}
-            <div className="space-x-2">
-              <button type="button" onClick={() => setOpen(false)} className="px-4 py-2 text-sm border border-zinc-700 rounded-md hover:bg-zinc-800">
+            <div className="space-x-3 flex">
+              <button type="button" onClick={() => setOpen(false)} style={{ padding: '8px 16px', fontSize: '14px', background: 'none', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--fg)', cursor: 'pointer' }}>
                 Cancel
               </button>
-              <button type="submit" disabled={loading} className="px-4 py-2 text-sm bg-white text-black rounded-md hover:bg-zinc-200">
+              <button type="submit" disabled={loading} className="btn btn-primary form-submit" style={{ padding: '8px 16px', fontSize: '14px', margin: '0' }}>
                 {loading ? "Saving..." : "Save"}
               </button>
             </div>
