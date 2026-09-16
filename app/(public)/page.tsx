@@ -154,15 +154,35 @@ export default async function PortfolioPage() {
                         </div>
                     </div>
                 </div>
-                <div className="facts-grid">
-                    <div className="fact-cell"><p className="fact-label">B.Tech CSBS</p><p className="fact-detail">SASTRA Deemed University · Expected 2027</p></div>
-                    <div className="fact-cell"><p className="fact-label">AI + Backend</p><p className="fact-detail">Primary technical focus</p></div>
-                    <div className="fact-cell"><p className="fact-label">E-Cell</p><p className="fact-detail">Vice-Chairperson, SASTRA</p></div>
-                    <div className="fact-cell"><p className="fact-label">Full-Stack</p><p className="fact-detail">React · Next.js · FastAPI</p></div>
-                </div>
             </div>
         </div>
     </section>
+
+    {/*  ACHIEVEMENTS (Dynamic from Admin)  */}
+    {achievements && achievements.length > 0 && (
+      <section id="achievements" className="section hairline-t">
+          <div className="container">
+              <div className="section-heading reveal-fade">
+                  <p className="eyebrow">Achievements</p>
+                  <h2>Awards &amp; Recognition</h2>
+              </div>
+              <div className="credential-grid reveal-fade" style={{ "--delay": "60ms" } as React.CSSProperties}>
+                  {achievements.map(achievement => (
+                    <div key={achievement.id} className="credential-card">
+                        <p className="credential-tag">{achievement.date || 'Achievement'}</p>
+                        <h3 className="credential-title">{achievement.title}</h3>
+                        <p className="credential-org">{achievement.description}</p>
+                        {achievement.url && (
+                          <a href={achievement.url} target="_blank" rel="noopener noreferrer" className="text-sm mt-2 inline-block text-blue-400">
+                            View Details &rarr;
+                          </a>
+                        )}
+                    </div>
+                  ))}
+              </div>
+          </div>
+      </section>
+    )}
 
     {/*  SKILLS  */}
     <section id="skills" className="section hairline-t">
