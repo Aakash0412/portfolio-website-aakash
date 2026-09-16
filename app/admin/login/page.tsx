@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -23,7 +24,7 @@ export default function LoginPage() {
     })
 
     if (res?.error) {
-      setError("Invalid credentials")
+      setError("Invalid credentials. Please check your email and password.")
       setLoading(false)
     } else {
       router.push("/admin")
@@ -32,58 +33,75 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-950 p-4">
-      <div className="w-full max-w-md space-y-8 rounded-2xl bg-zinc-900 p-8 shadow-xl border border-zinc-800">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white">Admin Login</h2>
-          <p className="mt-2 text-sm text-zinc-400">Sign in to manage your portfolio</p>
+    <section className="hero" style={{ minHeight: '100svh', padding: '60px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="bg-grid-pattern"></div>
+      
+      <div className="container" style={{ maxWidth: '420px', width: '100%', padding: '0' }}>
+        <div className="section-heading reveal-fade" style={{ marginBottom: '32px', textAlign: 'center' }}>
+          <p className="eyebrow" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            <span style={{ display: "block", width: "6px", height: "6px", borderRadius: "50%", background: "var(--fg)" }}></span>
+            Aakash A.
+          </p>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)' }}>Admin Access</h2>
+          <p className="section-sub" style={{ margin: '12px auto 0' }}>Sign in to manage your portfolio.</p>
         </div>
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {error && (
-            <div className="rounded-md bg-red-500/10 p-4 text-sm text-red-500 border border-red-500/20">
-              {error}
-            </div>
-          )}
-          
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-zinc-300" htmlFor="email">
-                Email Address
-              </label>
+        <div className="reveal-fade" style={{ "--delay": "60ms" } as React.CSSProperties}>
+          <form className="contact-form" onSubmit={handleSubmit} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '16px', padding: '36px' }}>
+            
+            <div className="form-group">
+              <label htmlFor="email" className="form-label">Email / Username</label>
               <input
                 id="email"
                 type="email"
+                name="email"
+                autoComplete="username"
                 required
-                className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-800 px-3 py-2 text-white placeholder-zinc-500 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:text-sm"
+                className="form-input"
+                placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-zinc-300" htmlFor="password">
-                Password
-              </label>
+            
+            <div className="form-group">
+              <label htmlFor="password" className="form-label">Password</label>
               <input
                 id="password"
                 type="password"
+                name="password"
+                autoComplete="current-password"
                 required
-                className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-800 px-3 py-2 text-white placeholder-zinc-500 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:text-sm"
+                className="form-input"
+                placeholder="••••••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-          </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="flex w-full justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-black shadow-sm hover:bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:opacity-50"
-          >
-            {loading ? "Signing in..." : "Sign in"}
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn btn-primary form-submit"
+              style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
+            >
+              {loading ? "Signing in…" : "Sign In"}
+            </button>
+            
+            {error && (
+              <p className="form-status is-error" aria-live="polite" style={{ marginTop: '8px', textAlign: 'center', minHeight: 'auto' }}>
+                {error}
+              </p>
+            )}
+          </form>
+
+          <div style={{ marginTop: '24px', textAlign: 'center' }}>
+            <Link href="/" className="nav-link" style={{ fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              &larr; Back to Portfolio
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
