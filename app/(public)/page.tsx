@@ -281,18 +281,35 @@ export default async function PortfolioPage() {
                     <p className="credential-org">SASTRA Deemed University</p>
                 </div>
                 
-                {certifications.map((cert) => (
-                  <div key={cert.id} className="credential-card">
-                      <p className="credential-tag">Certification</p>
-                      <h3 className="credential-title">{cert.title}</h3>
-                      <p className="credential-org">{cert.issuer}</p>
-                      {cert.certificateImageUrl && (
-                        <a href={cert.certificateImageUrl} target="_blank" rel="noopener noreferrer" className="text-sm mt-2 inline-block text-blue-400 hover:text-blue-300">
+                {certifications.map((cert) => {
+                  if (cert.certificateImageUrl) {
+                    return (
+                      <a 
+                        key={cert.id} 
+                        href={cert.certificateImageUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="credential-card"
+                        style={{ display: 'block', textDecoration: 'none', cursor: 'pointer' }}
+                      >
+                        <p className="credential-tag">Certification</p>
+                        <h3 className="credential-title">{cert.title}</h3>
+                        <p className="credential-org">{cert.issuer}</p>
+                        <span className="text-sm mt-2 inline-block text-blue-400">
                           View Certificate &rarr;
-                        </a>
-                      )}
-                  </div>
-                ))}
+                        </span>
+                      </a>
+                    );
+                  }
+                  
+                  return (
+                    <div key={cert.id} className="credential-card">
+                        <p className="credential-tag">Certification</p>
+                        <h3 className="credential-title">{cert.title}</h3>
+                        <p className="credential-org">{cert.issuer}</p>
+                    </div>
+                  );
+                })}
             </div>
         </div>
     </section>
