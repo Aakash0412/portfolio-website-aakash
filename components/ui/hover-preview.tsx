@@ -14,47 +14,42 @@ interface HoverPreviewProps {
 
 export function HoverPreview({ children, imageUrl, iframeUrl, altText = "Preview", className = "" }: HoverPreviewProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [popupPos, setPopupPos] = useState({ top: 0, left: 0 });
   const [mounted, setMounted] = useState(false);
-  const rafRef = useRef<number | null>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (isHovered) {
-        if (rafRef.current) cancelAnimationFrame(rafRef.current);
-        rafRef.current = requestAnimationFrame(() => {
-          setMousePos({ x: e.clientX, y: e.clientY });
-        });
+  const handleMouseEnter = () => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      const popupWidth = iframeUrl ? 480 : 360;
+      
+      // Default position: to the right of the card
+      let left = rect.right + 20;
+      let top = rect.top;
+
+      // If it overflows the right edge, position to the left of the card instead
+      if (left + popupWidth > window.innerWidth - 20) {
+        left = rect.left - popupWidth - 20;
       }
-    };
 
-    if (isHovered) {
-      window.addEventListener("mousemove", handleMouseMove);
-    } else {
-      window.removeEventListener("mousemove", handleMouseMove);
+      setPopupPos({ top, left });
     }
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [isHovered]);
+    setIsHovered(true);
+  };
 
   const isPdf = imageUrl?.toLowerCase().endsWith(".pdf");
 
   return (
     <>
       <div 
+        ref={triggerRef}
         className={className}
-        onMouseEnter={(e) => {
-          setIsHovered(true);
-          setMousePos({ x: e.clientX, y: e.clientY });
-        }}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsHovered(false)}
       >
         {children}
@@ -64,14 +59,13 @@ export function HoverPreview({ children, imageUrl, iframeUrl, altText = "Preview
         <div
           style={{
             position: "fixed",
-            top: mousePos.y,
-            left: mousePos.x,
-            pointerEvents: "none",
-            transform: "translate(15px, 15px)", // offset from cursor
+            top: popupPos.top,
+            left: popupPos.left,
             zIndex: 9999,
             opacity: isHovered ? 1 : 0,
-            transition: "opacity 0.2s ease-in-out, transform 0.1s ease-out",
-            scale: isHovered ? 1 : 0.95,
+            pointerEvents: isHovered ? "auto" : "none",
+            transition: "opacity 0.2s ease-in-out, transform 0.15s ease-out",
+            transform: isHovered ? "translateY(0)" : "translateY(10px)",
           }}
         >
           {isHovered && (
@@ -79,13 +73,13 @@ export function HoverPreview({ children, imageUrl, iframeUrl, altText = "Preview
               {iframeUrl ? (
                 <iframe 
                   src={iframeUrl} 
-                  className="w-[480px] h-[320px] border-none bg-white pointer-events-none rounded-xl"
+                  className="w-[480px] h-[320px] border-none bg-white rounded-xl"
                   title={altText}
                 />
               ) : isPdf && imageUrl ? (
                 <iframe 
-                  src={`https://docs.google.com/viewer?url=${encodeURIComponent((typeof window !== 'undefined' ? window.location.origin : '') + imageUrl)}&embedded=true`} 
-                  className="w-[360px] h-[480px] border-none pointer-events-none bg-white rounded-xl"
+                  src={`${imageUrl}#toolbar=0&navpanes=0&scrollbar=0`} 
+                  className="w-[360px] h-[480px] border-none bg-white rounded-xl"
                   title={altText}
                 />
               ) : imageUrl ? (
