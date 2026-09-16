@@ -296,8 +296,8 @@ export default async function PortfolioPage() {
                             </div>
                         </article>
                     );
-                    return project.thumbnailUrl ? (
-                        <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} altText={project.title}>
+                    return (project.liveUrl || project.thumbnailUrl) ? (
+                        <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} iframeUrl={project.liveUrl} altText={project.title}>
                             {content}
                         </HoverPreview>
                     ) : (
@@ -318,8 +318,8 @@ export default async function PortfolioPage() {
                                 </div>
                             </article>
                         );
-                        return project.thumbnailUrl ? (
-                            <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} altText={project.title}>
+                        return (project.liveUrl || project.thumbnailUrl) ? (
+                            <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} iframeUrl={project.liveUrl} altText={project.title}>
                                 {content}
                             </HoverPreview>
                         ) : (

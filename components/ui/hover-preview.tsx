@@ -6,12 +6,13 @@ import { createPortal } from "react-dom";
 
 interface HoverPreviewProps {
   children: React.ReactNode;
-  imageUrl: string;
+  imageUrl?: string | null;
+  iframeUrl?: string | null;
   altText?: string;
   className?: string;
 }
 
-export function HoverPreview({ children, imageUrl, altText = "Preview", className = "" }: HoverPreviewProps) {
+export function HoverPreview({ children, imageUrl, iframeUrl, altText = "Preview", className = "" }: HoverPreviewProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [mounted, setMounted] = useState(false);
@@ -25,7 +26,6 @@ export function HoverPreview({ children, imageUrl, altText = "Preview", classNam
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (isHovered) {
-        // Use requestAnimationFrame for smooth tracking
         if (rafRef.current) cancelAnimationFrame(rafRef.current);
         rafRef.current = requestAnimationFrame(() => {
           setMousePos({ x: e.clientX, y: e.clientY });
@@ -44,6 +44,8 @@ export function HoverPreview({ children, imageUrl, altText = "Preview", classNam
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [isHovered]);
+
+  const isPdf = imageUrl?.toLowerCase().endsWith(".pdf");
 
   return (
     <>
@@ -73,15 +75,29 @@ export function HoverPreview({ children, imageUrl, altText = "Preview", classNam
           }}
         >
           {isHovered && (
-            <div className="overflow-hidden rounded-xl shadow-2xl" style={{ background: "rgba(20,20,20,0.8)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <Image 
-                src={imageUrl} 
-                alt={altText} 
-                width={320} 
-                height={200} 
-                className="object-cover w-[320px] h-auto"
-                style={{ opacity: 0.95 }}
-              />
+            <div className="overflow-hidden rounded-xl shadow-2xl bg-[#0a0a0a]" style={{ backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.1)" }}>
+              {iframeUrl ? (
+                <iframe 
+                  src={iframeUrl} 
+                  className="w-[480px] h-[320px] border-none bg-white pointer-events-none"
+                  title={altText}
+                />
+              ) : isPdf && imageUrl ? (
+                <iframe 
+                  src={`${imageUrl}#toolbar=0&navpanes=0&scrollbar=0`} 
+                  className="w-[320px] h-[450px] border-none pointer-events-none"
+                  title={altText}
+                />
+              ) : imageUrl ? (
+                <Image 
+                  src={imageUrl} 
+                  alt={altText} 
+                  width={320} 
+                  height={200} 
+                  className="object-cover w-[320px] h-auto"
+                  style={{ opacity: 0.95 }}
+                />
+              ) : null}
             </div>
           )}
         </div>,
