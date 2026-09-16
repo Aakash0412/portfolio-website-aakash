@@ -24,7 +24,10 @@ export function CredentialModal({ children, tag, title, org, description }: Cred
       <DialogTrigger render={<div className="text-left w-full h-full" />}>
         {children}
       </DialogTrigger>
-      <DialogContent className="border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.6)] p-8 sm:p-10 rounded-3xl bg-[#0a0a0a]/95 backdrop-blur-3xl sm:max-w-[550px] gap-0">
+      <DialogContent 
+        className="border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.6)] rounded-3xl bg-[#0a0a0a]/95 backdrop-blur-3xl sm:max-w-[550px] gap-0"
+        style={{ padding: "36px" }}
+      >
         <DialogHeader className="w-full text-left">
           <div className="mb-6 flex items-center gap-3">
             <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-[#28c840] border border-[#28c840]/20 bg-[#28c840]/10 px-3 py-1 rounded-full shadow-[0_0_15px_rgba(40,200,64,0.15)]">
