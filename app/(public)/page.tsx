@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import Image from 'next/image';
+import { HoverPreview } from '@/components/ui/hover-preview';
+import { CredentialModal } from '@/components/ui/credential-modal';
 
 const prisma = new PrismaClient();
 
@@ -168,16 +170,24 @@ export default async function PortfolioPage() {
               </div>
               <div className="credential-grid reveal-fade" style={{ "--delay": "60ms" } as React.CSSProperties}>
                   {achievements.map(achievement => (
-                    <div key={achievement.id} className="credential-card">
-                        <p className="credential-tag">{achievement.date || 'Achievement'}</p>
-                        <h3 className="credential-title">{achievement.title}</h3>
-                        <p className="credential-org">{achievement.description}</p>
-                        {achievement.url && (
-                          <a href={achievement.url} target="_blank" rel="noopener noreferrer" className="text-sm mt-2 inline-block text-blue-400">
-                            View Details &rarr;
-                          </a>
-                        )}
-                    </div>
+                    <CredentialModal 
+                        key={achievement.id} 
+                        tag={achievement.date || 'Achievement'}
+                        title={achievement.title}
+                        org=""
+                        description={achievement.description}
+                    >
+                        <div className="credential-card cursor-pointer hover:bg-white/5 transition-colors">
+                            <p className="credential-tag">{achievement.date || 'Achievement'}</p>
+                            <h3 className="credential-title">{achievement.title}</h3>
+                            <p className="credential-org text-ellipsis overflow-hidden whitespace-nowrap">{achievement.description}</p>
+                            {achievement.url && (
+                              <a href={achievement.url} target="_blank" rel="noopener noreferrer" className="text-sm mt-2 inline-block text-blue-400 relative z-10 pointer-events-auto">
+                                View Details &rarr;
+                              </a>
+                            )}
+                        </div>
+                    </CredentialModal>
                   ))}
               </div>
           </div>
@@ -264,39 +274,57 @@ export default async function PortfolioPage() {
                 <button className="filter-btn" data-filter="fullstack" role="tab" aria-selected="false">Full-Stack</button>
             </div>
             <div className="projects-list" id="projectsList">
-                {projects.slice(0, 2).map((project, idx) => (
-                    <article key={project.id} className="project-row reveal-fade" data-category="ai" style={{ "--delay": `${80 + idx * 20}ms` } as React.CSSProperties}>
-                        <div className="project-left">
-                            <div className="project-meta"><span className="project-num">{String(idx + 1).padStart(2, '0')}</span><span className="project-kicker">Featured</span></div>
-                            <h3 className="project-title">{project.title}</h3>
-                            <p className="project-body">{project.description}</p>
-                            <div className="project-links">
-                                {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="link-primary">Live demo &#8599;</a>}
-                                {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>}
+                {projects.slice(0, 2).map((project, idx) => {
+                    const content = (
+                        <article className="project-row reveal-fade hover:bg-white/5 transition-colors" data-category="ai" style={{ "--delay": `${80 + idx * 20}ms` } as React.CSSProperties}>
+                            <div className="project-left">
+                                <div className="project-meta"><span className="project-num">{String(idx + 1).padStart(2, '0')}</span><span className="project-kicker">Featured</span></div>
+                                <h3 className="project-title">{project.title}</h3>
+                                <p className="project-body">{project.description}</p>
+                                <div className="project-links">
+                                    {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="link-primary relative z-10 pointer-events-auto">Live demo &#8599;</a>}
+                                    {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="relative z-10 pointer-events-auto">GitHub &#8599;</a>}
+                                </div>
                             </div>
-                        </div>
-                        <div className="project-right">
-                            {project.thumbnailUrl ? (
-                                <Image src={project.thumbnailUrl} alt={`Thumbnail for ${project.title}`} className="project-img" width={600} height={400} />
-                            ) : (
-                                <div className="project-right-empty"></div>
-                            )}
-                        </div>
-                    </article>
-                ))}
-                
-                <div className="projects-bento-grid">
-                    {projects.slice(2).map((project, idx) => (
-                        <article key={project.id} className="project-bento reveal-fade" data-category="ai" style={{ "--delay": `${120 + idx * 20}ms` } as React.CSSProperties}>
-                            <div className="project-meta"><span className="project-num">{String(idx + 3).padStart(2, '0')}</span><span className="project-kicker">Featured</span></div>
-                            <h3 className="project-title" style={{"fontSize": "1.4rem"} as React.CSSProperties}>{project.title}</h3>
-                            <p className="project-body">{project.description}</p>
-                            <div className="project-links" style={{"marginTop": "auto", "paddingTop": "12px"} as React.CSSProperties}>
-                                {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="link-primary">Live demo &#8599;</a>}
-                                {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>}
+                            <div className="project-right">
+                                {project.thumbnailUrl ? (
+                                    <Image src={project.thumbnailUrl} alt={`Thumbnail for ${project.title}`} className="project-img" width={600} height={400} />
+                                ) : (
+                                    <div className="project-right-empty"></div>
+                                )}
                             </div>
                         </article>
-                    ))}
+                    );
+                    return project.thumbnailUrl ? (
+                        <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} altText={project.title}>
+                            {content}
+                        </HoverPreview>
+                    ) : (
+                        <React.Fragment key={project.id}>{content}</React.Fragment>
+                    );
+                })}
+                
+                <div className="projects-bento-grid">
+                    {projects.slice(2).map((project, idx) => {
+                        const content = (
+                            <article className="project-bento reveal-fade hover:bg-white/5 transition-colors" data-category="ai" style={{ "--delay": `${120 + idx * 20}ms` } as React.CSSProperties}>
+                                <div className="project-meta"><span className="project-num">{String(idx + 3).padStart(2, '0')}</span><span className="project-kicker">Featured</span></div>
+                                <h3 className="project-title" style={{"fontSize": "1.4rem"} as React.CSSProperties}>{project.title}</h3>
+                                <p className="project-body">{project.description}</p>
+                                <div className="project-links" style={{"marginTop": "auto", "paddingTop": "12px"} as React.CSSProperties}>
+                                    {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="link-primary relative z-10 pointer-events-auto">Live demo &#8599;</a>}
+                                    {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="relative z-10 pointer-events-auto">GitHub &#8599;</a>}
+                                </div>
+                            </article>
+                        );
+                        return project.thumbnailUrl ? (
+                            <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} altText={project.title}>
+                                {content}
+                            </HoverPreview>
+                        ) : (
+                            <React.Fragment key={project.id}>{content}</React.Fragment>
+                        );
+                    })}
                 </div>
             </div>
         </div>
@@ -308,18 +336,34 @@ export default async function PortfolioPage() {
             <div className="section-heading reveal-fade"><p className="eyebrow">Experience</p><h2>Leadership &amp; involvement</h2></div>
             <div className="credential-grid reveal-fade" style={{ "--delay": "60ms" } as React.CSSProperties}>
                 {experience.map(exp => (
-                  <div key={exp.id} className="credential-card">
-                      <p className="credential-tag">{exp.startDate} - {exp.endDate || (exp.isCurrent ? 'Present' : '')}</p>
-                      <h3 className="credential-title">{exp.role}</h3>
-                      <p className="credential-org">{exp.organization}</p>
-                  </div>
+                  <CredentialModal 
+                      key={exp.id} 
+                      tag={`${exp.startDate} - ${exp.endDate || (exp.isCurrent ? 'Present' : '')}`}
+                      title={exp.role}
+                      org={exp.organization}
+                      description={exp.description}
+                  >
+                      <div className="credential-card cursor-pointer hover:bg-white/5 transition-colors">
+                          <p className="credential-tag">{exp.startDate} - {exp.endDate || (exp.isCurrent ? 'Present' : '')}</p>
+                          <h3 className="credential-title">{exp.role}</h3>
+                          <p className="credential-org">{exp.organization}</p>
+                      </div>
+                  </CredentialModal>
                 ))}
                 {leadership.map(item => (
-                  <div key={item.id} className="credential-card">
-                      <p className="credential-tag">Leadership</p>
-                      <h3 className="credential-title">{item.role}</h3>
-                      <p className="credential-org">{item.organization}</p>
-                  </div>
+                  <CredentialModal 
+                      key={item.id} 
+                      tag="Leadership"
+                      title={item.role}
+                      org={item.organization}
+                      description={item.description}
+                  >
+                      <div className="credential-card cursor-pointer hover:bg-white/5 transition-colors">
+                          <p className="credential-tag">Leadership</p>
+                          <h3 className="credential-title">{item.role}</h3>
+                          <p className="credential-org">{item.organization}</p>
+                      </div>
+                  </CredentialModal>
                 ))}
             </div>
         </div>
@@ -331,41 +375,51 @@ export default async function PortfolioPage() {
             <div className="section-heading reveal-fade"><p className="eyebrow">Education</p><h2>Education &amp; certifications</h2></div>
             <div className="credential-grid reveal-fade" style={{ "--delay": "60ms" } as React.CSSProperties}>
                 {education.map(edu => (
-                  <div key={edu.id} className="credential-card">
-                      <p className="credential-tag">{edu.startDate} - {edu.endDate} {edu.grade ? `· ${edu.grade}` : ''}</p>
-                      <h3 className="credential-title">{edu.degree} {edu.field ? `— ${edu.field}` : ''}</h3>
-                      <p className="credential-org">{edu.institution}</p>
-                  </div>
+                  <CredentialModal 
+                      key={edu.id} 
+                      tag={`${edu.startDate} - ${edu.endDate} ${edu.grade ? `· ${edu.grade}` : ''}`}
+                      title={`${edu.degree} ${edu.field ? `— ${edu.field}` : ''}`}
+                      org={edu.institution}
+                      description={edu.description}
+                  >
+                      <div className="credential-card cursor-pointer hover:bg-white/5 transition-colors">
+                          <p className="credential-tag">{edu.startDate} - {edu.endDate} {edu.grade ? `· ${edu.grade}` : ''}</p>
+                          <h3 className="credential-title">{edu.degree} {edu.field ? `— ${edu.field}` : ''}</h3>
+                          <p className="credential-org">{edu.institution}</p>
+                      </div>
+                  </CredentialModal>
                 ))}
                 
                 {certifications.map((cert) => {
+                  const content = (
+                      <div className="credential-card cursor-pointer hover:bg-white/5 transition-colors">
+                          <p className="credential-tag">Certification</p>
+                          <h3 className="credential-title">{cert.title}</h3>
+                          <p className="credential-org">{cert.issuer}</p>
+                          {cert.certificateImageUrl && (
+                              <span className="text-sm mt-2 inline-block text-blue-400">
+                                View Certificate &rarr;
+                              </span>
+                          )}
+                      </div>
+                  );
+                  
                   if (cert.certificateImageUrl) {
                     return (
-                      <a 
-                        key={cert.id} 
-                        href={cert.certificateImageUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="credential-card"
-                        style={{ display: 'block', textDecoration: 'none', cursor: 'pointer' }}
-                      >
-                        <p className="credential-tag">Certification</p>
-                        <h3 className="credential-title">{cert.title}</h3>
-                        <p className="credential-org">{cert.issuer}</p>
-                        <span className="text-sm mt-2 inline-block text-blue-400">
-                          View Certificate &rarr;
-                        </span>
-                      </a>
+                      <HoverPreview key={cert.id} imageUrl={cert.certificateImageUrl} altText={cert.title}>
+                          <a 
+                            href={cert.certificateImageUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            style={{ display: 'block', textDecoration: 'none' }}
+                          >
+                            {content}
+                          </a>
+                      </HoverPreview>
                     );
                   }
                   
-                  return (
-                    <div key={cert.id} className="credential-card">
-                        <p className="credential-tag">Certification</p>
-                        <h3 className="credential-title">{cert.title}</h3>
-                        <p className="credential-org">{cert.issuer}</p>
-                    </div>
-                  );
+                  return <React.Fragment key={cert.id}>{content}</React.Fragment>;
                 })}
             </div>
         </div>

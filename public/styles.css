@@ -1061,6 +1061,7 @@ input:focus-visible, textarea:focus-visible {
 }
 .timeline-item {
     position: relative;
+    width: 100%;
 }
 .timeline-dot {
     position: absolute;
@@ -1072,6 +1073,37 @@ input:focus-visible, textarea:focus-visible {
     background: var(--fg);
     border: 2px solid var(--bg);
     box-shadow: 0 0 0 1px var(--border);
+}
+
+@media (min-width: 768px) {
+    .timeline {
+        padding-left: 0;
+    }
+    .timeline::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .timeline-item {
+        width: 50%;
+        padding: 0 40px;
+    }
+    .timeline-item:nth-child(odd) {
+        align-self: flex-start;
+        text-align: right;
+    }
+    .timeline-item:nth-child(odd) .timeline-dot {
+        right: -45px;
+        left: auto;
+    }
+    .timeline-item:nth-child(even) {
+        align-self: flex-end;
+    }
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: -44.5px;
+    }
+    .service-body {
+        max-width: 100% !important;
+    }
 }
 
 /* Secondary Projects Bento Layout */
