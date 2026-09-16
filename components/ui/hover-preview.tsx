@@ -84,7 +84,7 @@ export function HoverPreview({ children, imageUrl, iframeUrl, altText = "Preview
                 />
               ) : isPdf && imageUrl ? (
                 <iframe 
-                  src={`${imageUrl}#toolbar=0&navpanes=0&scrollbar=0`} 
+                  src={`https://docs.google.com/viewer?url=${encodeURIComponent((typeof window !== 'undefined' ? window.location.origin : '') + imageUrl)}&embedded=true`} 
                   className="w-[360px] h-[480px] border-none pointer-events-none bg-white rounded-xl"
                   title={altText}
                 />
