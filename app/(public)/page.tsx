@@ -1,3 +1,4 @@
+import React from 'react';
 import { PrismaClient } from '@prisma/client';
 import Image from 'next/image';
 import { HoverPreview } from '@/components/ui/hover-preview';

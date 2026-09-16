@@ -21,7 +21,7 @@ interface CredentialModalProps {
 export function CredentialModal({ children, tag, title, org, description }: CredentialModalProps) {
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <DialogTrigger render={<div className="text-left w-full h-full" />}>
         {children}
       </DialogTrigger>
       <DialogContent className="border border-white/10 shadow-2xl p-6 rounded-2xl" style={{ background: "rgba(10,10,10,0.85)", backdropFilter: "blur(16px)" }}>
