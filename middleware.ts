@@ -5,22 +5,16 @@ import { NextResponse } from "next/server"
 export const { auth } = NextAuth(authConfig)
 
 export default auth((req) => {
-  const isLoggedIn = !!req.auth
+  const isLoggedIn = !!req.auth?.user
   const isOnAdmin = req.nextUrl.pathname.startsWith('/admin')
   const isOnLogin = req.nextUrl.pathname === '/admin/login'
 
   if (isOnAdmin && !isOnLogin && !isLoggedIn) {
-    return new NextResponse(null, {
-      status: 302,
-      headers: { Location: '/admin/login' },
-    })
+    return NextResponse.redirect(new URL('/admin/login', req.nextUrl))
   }
 
   if (isOnLogin && isLoggedIn) {
-    return new NextResponse(null, {
-      status: 302,
-      headers: { Location: '/admin' },
-    })
+    return NextResponse.redirect(new URL('/admin', req.nextUrl))
   }
 
   return NextResponse.next()
