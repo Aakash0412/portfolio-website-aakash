@@ -22,7 +22,7 @@ export default async function AdminDashboard() {
           <SignOutButton />
         </header>
 
-        <div className="grid reveal-fade" style={{ "--delay": "100ms" } as React.CSSProperties, { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
+        <div className="grid reveal-fade" style={{ "--delay": "100ms", display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' } as React.CSSProperties}>
           <div className="project-card" style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '16px', padding: '24px', transition: 'all 0.3s ease' }}>
             <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Projects</h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '16px' }}>Manage your portfolio projects, status, and details.</p>
