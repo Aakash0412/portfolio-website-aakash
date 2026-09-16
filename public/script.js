@@ -241,7 +241,7 @@
     document.addEventListener('keydown', e => {
         if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
             e.preventDefault();
-            overlay.classList.contains('is-open') ? close() : open();
+            if (overlay.classList.contains('is-open')) close(); else open();
             return;
         }
         
@@ -279,7 +279,7 @@
 
     // click outside
     overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
-    if (cmdBtn) cmdBtn.addEventListener('click', () => overlay.classList.contains('is-open') ? close() : open());
+    if (cmdBtn) cmdBtn.addEventListener('click', () => { if (overlay.classList.contains('is-open')) close(); else open(); });
 })();
 
 /* ---------- PROJECT FILTER ---------- */
@@ -377,13 +377,4 @@
         });
     }
 })();
-
-/* ---------- BENTO HOVER SPOTLIGHT ---------- */
-function handleBentoHover(e) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-}
 

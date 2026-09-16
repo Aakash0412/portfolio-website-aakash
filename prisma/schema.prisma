@@ -1,0 +1,178 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  passwordHash  String
+  name          String
+  role          String   @default("ADMIN")
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Profile {
+  id              String   @id @default(cuid())
+  name            String
+  headline        String
+  bio             String
+  shortBio        String?
+  profileImageUrl String?
+  resumeUrl       String?
+  email           String
+  availability    String?
+  location        String?
+  updatedAt       DateTime @updatedAt
+}
+
+model Project {
+  id               String   @id @default(cuid())
+  title            String
+  slug             String   @unique
+  shortDescription String
+  description      String
+  problem          String?
+  solution         String?
+  result           String?
+  thumbnailUrl     String?
+  githubUrl        String?
+  liveUrl          String?
+  featured         Boolean  @default(false)
+  status           String   @default("draft") // draft, published, archived
+  isPublished      Boolean  @default(false)
+  displayOrder     Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  skills           ProjectSkill[]
+}
+
+model SkillCategory {
+  id           String   @id @default(cuid())
+  name         String
+  displayOrder Int      @default(0)
+  skills       Skill[]
+}
+
+model Skill {
+  id           String   @id @default(cuid())
+  categoryId   String
+  category     SkillCategory @relation(fields: [categoryId], references: [id])
+  name         String
+  icon         String?
+  description  String?
+  displayOrder Int      @default(0)
+  isVisible    Boolean  @default(true)
+
+  projects     ProjectSkill[]
+}
+
+model ProjectSkill {
+  projectId String
+  skillId   String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  skill     Skill   @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, skillId])
+}
+
+model Certification {
+  id                  String   @id @default(cuid())
+  title               String
+  issuer              String
+  issueDate           String?
+  expiryDate          String?
+  credentialId        String?
+  credentialUrl       String?
+  certificateImageUrl String?
+  description         String?
+  featured            Boolean  @default(false)
+  displayOrder        Int      @default(0)
+  isPublished         Boolean  @default(false)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model Experience {
+  id             String   @id @default(cuid())
+  organization   String
+  role           String
+  employmentType String?
+  location       String?
+  startDate      String?
+  endDate        String?
+  isCurrent      Boolean  @default(false)
+  description    String?
+  displayOrder   Int      @default(0)
+  isPublished    Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  points         ExperiencePoint[]
+}
+
+model ExperiencePoint {
+  id           String   @id @default(cuid())
+  experienceId String
+  experience   Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  content      String
+  displayOrder Int      @default(0)
+}
+
+model Education {
+  id           String   @id @default(cuid())
+  institution  String
+  degree       String
+  field        String?
+  startDate    String?
+  endDate      String?
+  grade        String?
+  location     String?
+  description  String?
+  displayOrder Int      @default(0)
+  isPublished  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Leadership {
+  id           String   @id @default(cuid())
+  organization String
+  role         String
+  startDate    String?
+  endDate      String?
+  description  String?
+  displayOrder Int      @default(0)
+  isPublished  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Achievement {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  date         String?
+  url          String?
+  displayOrder Int      @default(0)
+  isPublished  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model SocialLink {
+  id           String   @id @default(cuid())
+  platform     String
+  label        String
+  url          String
+  icon         String?
+  displayOrder Int      @default(0)
+  isVisible    Boolean  @default(true)
+}
