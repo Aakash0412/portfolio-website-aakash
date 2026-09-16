@@ -83,11 +83,14 @@ export function HoverPreview({ children, imageUrl, iframeUrl, altText = "Preview
                   title={altText}
                 />
               ) : isPdf && imageUrl ? (
-                <iframe 
-                  src={`${imageUrl}#toolbar=0&navpanes=0&scrollbar=0`} 
-                  className="w-[320px] h-[450px] border-none pointer-events-none"
-                  title={altText}
-                />
+                <div className="w-[320px] h-[200px] flex flex-col items-center justify-center bg-gradient-to-br from-[#111] to-[#050505] border-none">
+                  <div className="w-14 h-16 bg-red-500/10 border border-red-500/20 rounded flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(239,68,68,0.15)] relative">
+                    <div className="absolute top-0 right-0 w-4 h-4 bg-red-500/20 border-b border-l border-red-500/20 rounded-bl"></div>
+                    <span className="text-red-400 font-bold text-sm tracking-widest">PDF</span>
+                  </div>
+                  <span className="text-gray-300 text-sm font-medium px-4 text-center truncate w-full">{altText}</span>
+                  <span className="text-gray-500 text-[10px] uppercase tracking-widest mt-2">Click to view document</span>
+                </div>
               ) : imageUrl ? (
                 <Image 
                   src={imageUrl} 
