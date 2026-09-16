@@ -68,6 +68,12 @@ export default async function AdminDashboard() {
             <p className="text-zinc-400 text-sm mb-4">Manage your awards and accomplishments.</p>
             <a href="/admin/achievements" className="text-sm font-medium text-blue-400 hover:text-blue-300">Manage Achievements &rarr;</a>
           </div>
+
+          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+            <h3 className="font-medium text-lg mb-2">Security</h3>
+            <p className="text-zinc-400 text-sm mb-4">Update your admin password and security settings.</p>
+            <a href="/admin/settings/password" className="text-sm font-medium text-blue-400 hover:text-blue-300">Change Password &rarr;</a>
+          </div>
         </div>
       </div>
     </div>

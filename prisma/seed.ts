@@ -1,9 +1,21 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log('Seeding database...');
+
+  const adminPassword = process.env.ADMIN_SEED_PASSWORD;
+  if (!adminPassword) {
+    console.error("❌ ERROR: ADMIN_SEED_PASSWORD is not configured in the environment.");
+    console.error("Please provide it to seed the admin user securely. Example:");
+    console.error("ADMIN_SEED_PASSWORD=\"your-secure-password\" npx prisma db seed");
+    process.exit(1);
+  }
+
+  // Generate hash dynamically instead of using a hardcoded string
+  const passwordHash = await bcrypt.hash(adminPassword, 10);
 
   // Create default Admin User
   await prisma.user.upsert({
@@ -12,8 +24,7 @@ async function main() {
     create: {
       email: 'admin@aakashayyappan.com',
       name: 'Aakash A.',
-      // Default password: password (hashed with bcrypt)
-      passwordHash: '$2b$10$EPfL.fL15R50rQG/17I5aOU4M3p9qX0UjR4p41v5O1VnO7bO7l8Gq',
+      passwordHash: passwordHash,
       role: 'ADMIN',
     },
   });
