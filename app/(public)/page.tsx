@@ -297,7 +297,7 @@ export default async function PortfolioPage() {
                         </article>
                     );
                     return (project.liveUrl || project.thumbnailUrl) ? (
-                        <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} iframeUrl={project.liveUrl} altText={project.title}>
+                        <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} altText={project.title}>
                             {content}
                         </HoverPreview>
                     ) : (
@@ -319,7 +319,7 @@ export default async function PortfolioPage() {
                             </article>
                         );
                         return (project.liveUrl || project.thumbnailUrl) ? (
-                            <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} iframeUrl={project.liveUrl} altText={project.title}>
+                            <HoverPreview key={project.id} imageUrl={project.thumbnailUrl} altText={project.title}>
                                 {content}
                             </HoverPreview>
                         ) : (
@@ -407,7 +407,7 @@ export default async function PortfolioPage() {
                   
                   if (cert.certificateImageUrl) {
                     return (
-                      <HoverPreview key={cert.id} imageUrl={cert.certificateImageUrl} altText={cert.title}>
+                      <HoverPreview key={cert.id} imageUrl={cert.thumbnailUrl} altText={cert.title}>
                           <a 
                             href={cert.certificateImageUrl} 
                             target="_blank" 

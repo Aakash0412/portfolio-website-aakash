@@ -12,6 +12,7 @@ export function CertificationFormDialog({ certification, isEditing }: { certific
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [certificateImageUrl, setCertificateImageUrl] = useState(certification?.certificateImageUrl || "")
+  const [thumbnailUrl, setThumbnailUrl] = useState(certification?.thumbnailUrl || "")
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -50,12 +51,23 @@ export function CertificationFormDialog({ certification, isEditing }: { certific
             <Input id="issuer" name="issuer" defaultValue={certification?.issuer} required className="form-input" />
           </div>
           <div className="form-group">
-            <Label className="form-label">Certificate Image / File</Label>
+            <Label className="form-label">Certificate Image / Document</Label>
+            <p className="text-xs text-gray-500 mb-2">Used when opening the certificate (PDF allowed)</p>
             <FileUpload 
               name="certificateImageUrl" 
               value={certificateImageUrl} 
               onChange={setCertificateImageUrl} 
               accept="image/*,application/pdf" 
+            />
+          </div>
+          <div className="form-group">
+            <Label className="form-label">Certificate Thumbnail (Optional)</Label>
+            <p className="text-xs text-gray-500 mb-2">Upload a PNG, JPG, or WebP image used for the hover preview.</p>
+            <FileUpload 
+              name="thumbnailUrl" 
+              value={thumbnailUrl} 
+              onChange={setThumbnailUrl} 
+              accept="image/jpeg,image/png,image/webp" 
             />
           </div>
           <div className="flex items-center space-x-3 mt-2">

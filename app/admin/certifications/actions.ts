@@ -15,6 +15,7 @@ export async function saveCertification(formData: FormData, id?: string) {
   const issuer = formData.get("issuer") as string
   const credentialUrl = validateSafeUrl(formData.get("credentialUrl") as string)
   const certificateImageUrl = validateSafeUrl(formData.get("certificateImageUrl") as string)
+  const thumbnailUrl = validateSafeUrl(formData.get("thumbnailUrl") as string)
   const isPublished = formData.get("isPublished") === "true"
 
   if (!title || !issuer) throw new Error("Missing required fields")
@@ -24,6 +25,7 @@ export async function saveCertification(formData: FormData, id?: string) {
     issuer,
     credentialUrl: credentialUrl || null,
     certificateImageUrl: certificateImageUrl || null,
+    thumbnailUrl: thumbnailUrl || null,
     isPublished,
   }
 

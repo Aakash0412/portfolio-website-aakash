@@ -92,6 +92,7 @@ model Certification {
   credentialId        String?
   credentialUrl       String?
   certificateImageUrl String?
+  thumbnailUrl        String?
   description         String?
   featured            Boolean  @default(false)
   displayOrder        Int      @default(0)
