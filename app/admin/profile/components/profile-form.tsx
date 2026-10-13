@@ -64,6 +64,17 @@ export function ProfileForm({ profile }: { profile: Profile }) {
           <Label htmlFor="location" className="form-label">Location</Label>
           <Input id="location" name="location" defaultValue={profile.location || ""} className="form-input" />
         </div>
+
+        <div className="form-group md:col-span-2">
+          <Label htmlFor="availability" className="form-label">Professional Status / Availability (Passport Status)</Label>
+          <Input 
+            id="availability" 
+            name="availability" 
+            defaultValue={profile.availability || ""} 
+            placeholder="e.g. B.Tech CSBS Candidate · Available for Internships" 
+            className="form-input" 
+          />
+        </div>
         
         <div className="form-group md:col-span-2 border-t border-zinc-800 pt-6 mt-4">
           <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Media & Files</h3>

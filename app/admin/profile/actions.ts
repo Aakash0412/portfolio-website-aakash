@@ -17,6 +17,7 @@ export async function updateProfile(formData: FormData, id: string) {
   const bio = formData.get("bio") as string
   const email = formData.get("email") as string
   const location = formData.get("location") as string
+  const availability = formData.get("availability") as string
   const resumeUrl = validateSafeUrl(formData.get("resumeUrl") as string)
   const profileImageUrl = validateSafeUrl(formData.get("profileImageUrl") as string)
 
@@ -31,6 +32,7 @@ export async function updateProfile(formData: FormData, id: string) {
       bio,
       email,
       location,
+      availability,
       resumeUrl,
       profileImageUrl,
     },

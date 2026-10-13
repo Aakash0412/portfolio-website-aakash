@@ -4,6 +4,7 @@ import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Script from "next/script";
 import ClientScripts from "@/components/client-scripts";
+import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -73,7 +74,9 @@ export default function RootLayout({
          * a <script> element during hydration (no console warning).
          */}
         <Script src="/theme-init.js" strategy="beforeInteractive" />
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
         {/*
          * ClientScripts injects Lenis + script.js via useEffect (after hydration).
          * This prevents: lenis class on <html>, is-visible on .reveal-fade,

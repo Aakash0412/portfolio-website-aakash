@@ -28,12 +28,7 @@ export default function ClientScripts() {
       document.body.appendChild(s);
     };
 
-    loadScript(
-      "https://unpkg.com/lenis@1.1.13/dist/lenis.min.js",
-      () => {
-        loadScript("/script.js");
-      }
-    );
+    loadScript("/script.js");
   }, []);
 
   return null;
