@@ -60,17 +60,47 @@ export default async function PortfolioPage() {
           </div>
           <div className="palette-results" id="paletteResults">
             <p className="palette-group">Dossier Navigation</p>
-            <button className="palette-item" data-action="scroll" data-target="home">Go to Overview</button>
-            <button className="palette-item" data-action="scroll" data-target="passport">Open Career Passport &amp; Visas</button>
-            <button className="palette-item" data-action="scroll" data-target="projects">Go to Selected Work</button>
-            <button className="palette-item" data-action="scroll" data-target="skills">Go to Technical Toolkit</button>
-            <button className="palette-item" data-action="scroll" data-target="credentials">Go to Education &amp; Credentials</button>
-            <button className="palette-item" data-action="scroll" data-target="contact">Go to Contact</button>
+            <button className="palette-item" data-action="scroll" data-target="home">
+              <span>Go to Overview</span>
+              <span className="palette-item-action">Jump &rarr;</span>
+            </button>
+            <button className="palette-item" data-action="scroll" data-target="passport">
+              <span>Open Career Passport &amp; Visas</span>
+              <span className="palette-item-action">Jump &rarr;</span>
+            </button>
+            <button className="palette-item" data-action="scroll" data-target="projects">
+              <span>Go to Selected Work</span>
+              <span className="palette-item-action">Jump &rarr;</span>
+            </button>
+            <button className="palette-item" data-action="scroll" data-target="skills">
+              <span>Go to Technical Toolkit</span>
+              <span className="palette-item-action">Jump &rarr;</span>
+            </button>
+            <button className="palette-item" data-action="scroll" data-target="credentials">
+              <span>Go to Education &amp; Credentials</span>
+              <span className="palette-item-action">Jump &rarr;</span>
+            </button>
+            <button className="palette-item" data-action="scroll" data-target="contact">
+              <span>Go to Contact</span>
+              <span className="palette-item-action">Jump &rarr;</span>
+            </button>
             <p className="palette-group">Direct Actions</p>
-            <button className="palette-item" data-action="copy" data-target="email">Copy verified email address</button>
-            <button className="palette-item" data-action="open" data-target="/aakash-resume.pdf">Download official resume</button>
-            <button className="palette-item" data-action="open" data-target="https://github.com/Aakash0412">Open GitHub profile</button>
-            <button className="palette-item" data-action="open" data-target="https://www.linkedin.com/in/aakash-a-4bb3a32b3/">Open LinkedIn profile</button>
+            <button className="palette-item" data-action="copy" data-target="email">
+              <span>Copy verified email address</span>
+              <span className="palette-item-action">Copy 📋</span>
+            </button>
+            <button className="palette-item" data-action="open" data-target="/aakash-resume.pdf">
+              <span>Download official resume</span>
+              <span className="palette-item-action">PDF &darr;</span>
+            </button>
+            <button className="palette-item" data-action="open" data-target="https://github.com/Aakash0412">
+              <span>Open GitHub profile</span>
+              <span className="palette-item-action">GitHub &nearr;</span>
+            </button>
+            <button className="palette-item" data-action="open" data-target="https://www.linkedin.com/in/aakash-a-4bb3a32b3/">
+              <span>Open LinkedIn profile</span>
+              <span className="palette-item-action">LinkedIn &nearr;</span>
+            </button>
           </div>
         </div>
       </div>
@@ -153,7 +183,7 @@ export default async function PortfolioPage() {
           </div>
 
           <div className="hero-visual reveal-fade" style={{ "--delay": "200ms" } as React.CSSProperties}>
-            <div className="passport-photo-frame" style={{ maxWidth: '340px', margin: '0 auto', boxShadow: '0 20px 50px rgba(0,0,0,0.3)' }}>
+            <div className="passport-photo-frame hero-photo-frame">
               <div className="passport-photo-corners" aria-hidden="true">
                 <span className="corner tl" />
                 <span className="corner tr" />
@@ -165,7 +195,7 @@ export default async function PortfolioPage() {
                 alt={profile?.name ? `${profile.name} — Profile Photograph` : "Aakash A."}
                 className="passport-photo-img"
                 width={340}
-                height={420}
+                height={510}
                 priority
               />
               <div className="passport-photo-watermark" aria-hidden="true">
